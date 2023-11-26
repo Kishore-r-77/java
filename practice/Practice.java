@@ -1,4 +1,7 @@
-package java_practice;
+package practice;
+
+import practice.Animal;
+import practice.Cat;
 
 class Animal {
 	int age;
