@@ -1,24 +1,16 @@
 package practice;
 
-import java.util.Arrays;
+import java.util.function.Function;
 
 class Practice {
 
 	public static void main(String[] args) {
-		int a[]=new int[1];
-		int b[]=a;
 		
-		a[0]=7;
+		Function<Integer, Integer> a = (n1)->n1+n1;
 		
-		Arrays.stream(b).forEach(n->System.out.println(n));
+		Integer result = a.apply(7);
 		
-		for(int x:a) {
-			System.out.println(x);
-		}
-		
-		for(int i=0;i<a.length;i++) {
-			System.out.println(a[i]);
-		}
+		System.out.println(result);
 		
 		
 	}
