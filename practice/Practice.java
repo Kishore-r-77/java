@@ -11,5 +11,11 @@ class Practice {
 		a[0]=7;
 		
 		Arrays.stream(b).forEach(n->System.out.println(n));
+		
+		for(int x:a) {
+			System.out.println(x);
+		}
+		
+		
 	}
 }
