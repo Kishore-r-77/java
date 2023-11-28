@@ -6,11 +6,10 @@ class Practice {
 		
 		int n = 1;
 		
-		while(n<=5) {
-			System.out.println(n);
+		do {
+			System.out.println("Will run this atleast once");
 			n++;
-		}
-		
+		}while(n!=5);
 		
 		
 		
