@@ -1,16 +1,32 @@
 package practice;
 
-import java.util.function.Function;
+import java.util.Scanner;
 
 class Practice {
 
 	public static void main(String[] args) {
 		
-		Function<Integer, Integer> a = (n1)->n1+n1;
+		Scanner scanner = new Scanner(System.in);
 		
-		Integer result = a.apply(7);
+		System.out.println("What is your name?");
 		
-		System.out.println(result);
+		String name = scanner.nextLine();
+		
+		System.out.println("What is your age?");
+		
+		int age = scanner.nextInt();
+		
+		scanner.nextLine();
+		
+		System.out.println("What's you're email?");
+		
+		String email = scanner.nextLine();
+		
+		System.out.println(name+" "+" "+age+" "+email);
+		
+		scanner.close();
+		
+		
 		
 		
 	}
