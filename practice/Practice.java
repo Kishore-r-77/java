@@ -11,7 +11,7 @@ class Practice {
 	}
 	
 	public static void varargexample(int ...x) {
-		System.out.println(Arrays.toString(x));
+		System.out.println(x.getClass().getSimpleName());
 	}
 
 }
