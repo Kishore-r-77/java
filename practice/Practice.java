@@ -1,15 +1,20 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
 
 	public static void main(String[] args) {
 
-	varargexample(1,4,5,62,3);
+	Integer[] nums=new Integer[5];
+	
+	for(int i =0;i<nums.length;i++) {
+		nums[i]=i;
+	}
+	System.out.println(Arrays.toString(nums));
 		
 	}
 	
-	public static void varargexample(int ...x) {
-		System.out.println(x.getClass().getSimpleName());
-	}
+	
 
 }
