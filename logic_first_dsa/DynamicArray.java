@@ -1,44 +1,81 @@
 package logic_first_dsa;
 
-import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Scanner;
 
-class MyArrayList {
-	private static final int INITIAL_CAPACITY = 4;
+class MyArray<T> implements Iterable<T> { // variables - methods
+	private static final int initialCapacity = 16;
+	private T arr[];
 	private int size;
-	int arr[];
-	int capacity;
+	private int capacity;
 
-	MyArrayList() {
+	@SuppressWarnings("unchecked")
+	MyArray() {
 		size = 0;
-		arr = new int[INITIAL_CAPACITY];
-		capacity = INITIAL_CAPACITY;
+		arr = (T[]) new Object[initialCapacity];
+		capacity = initialCapacity;
 	}
 
-	void addValue(int val) {
-		if (size == capacity) {
+	public void add(T val) {
+		if (size == capacity)
 			expandArray();
-		}
 		arr[size++] = val;
+
 	}
-	
-	void insertAtPos(int pos,int val) {
-		if(size==capacity) {
+
+	private void expandArray() {
+		capacity *= 2;
+		arr = java.util.Arrays.copyOf(arr, capacity);
+	}
+
+	public void display() {
+		System.out.println("Elements in the list: ");
+		for (int i = 0; i < size; i++)
+			System.out.print(arr[i] + " ");
+	}
+
+	public void insertAtPos(int pos, T val) {
+		if (size == capacity)
 			expandArray();
-		}
-		for(int i = size-1;i>=pos;i--)
-			arr[i+1]=arr[i];
-		arr[pos]=val;
+		for (int i = size - 1; i >= pos; i--)
+			arr[i + 1] = arr[i];
+		arr[pos] = val;
 		size++;
 	}
 
-	void expandArray() {
-		capacity *= 2;
-		arr = Arrays.copyOf(arr, capacity);
+	public void deleteAtPos(int pos) {
+
+		for (int i = pos + 1; i < size; i++)
+			arr[i - 1] = arr[i];
+
+		size--;
+
+		if (capacity > initialCapacity && capacity > 3 * size)
+			shrinkArray();
 	}
 
-	void display() {
-		Arrays.stream(arr).forEach((num) -> System.out.print(num + " "));
+	private void shrinkArray() {
+		capacity /= 2;
+		arr = java.util.Arrays.copyOf(arr, capacity);
+	}
+
+	public int length() {
+		return size;
+	}
+
+	public Iterator<T> iterator() {
+		return new Iterator<T>() {
+
+			int index = 0;
+
+			public T next() {
+				return arr[index++];
+			}
+
+			public boolean hasNext() {
+				return index < size;
+			}
+		};
 	}
 
 }
@@ -46,57 +83,59 @@ class MyArrayList {
 public class DynamicArray {
 
 	public static void main(String[] args) {
-		int inputVal, pos;
-		MyArrayList list = new MyArrayList();
-		
+		int val, pos;
+		MyArray<Integer> list = new MyArray<Integer>();
 		Scanner scanner = new Scanner(System.in);
-		
-
 		while (true) {
-			System.out.println("------- List of Key Inputs for Performing the Provided Operations-------");
-			System.out.println("1.Enter 1 for Adding Value at the end to an Array ");
-			System.out.println("2.Enter 2 to Display the Arrays");
-			System.out.println("3.Enter 3 to Insert value in an Array of your desired position.");
-			System.out.println("4.Enter 4 to Delete a value in an Array.");
-			System.out.println("5.Enter 5 for Exit");
-			System.out.println("\n------------------------------------------------------------------------\n");
-			System.out.println("Enter your're choice");
-			
+			System.out.println("\n -------- List Menu -----------\n");
+			System.out.println("1.Insert at End\n");
+			System.out.println("2.Display the list\n");
+			System.out.println("3.Insert at specified position \n");
+			System.out.println("4.Delete from specified position\n");
+			System.out.println("5.Exit\n");
+			System.out.println("\n--------------------------------------\n");
+			System.out.println("Enter your choice:\t");
 			int choice = scanner.nextInt();
 			switch (choice) {
-			case 1 -> {
-				System.out.println("Enter the Number to be Added in the Array");
-				inputVal = scanner.nextInt();
-				list.addValue(inputVal);
-			}
-			case 2 ->{
+			case 1:
+				System.out.print("Enter the data: ");
+				val = scanner.nextInt();
+				list.add(val);
+				break;
+			case 2:
 				list.display();
-				
-			}
-			case 3 -> {
-				System.out.println("Enter the Position");
-				pos=scanner.nextInt();
-				if(pos<0) {
-					System.out.println("Invalid Position");
+
+				break;
+			case 3:
+				System.out.println("Enter the pos(starts at 0): ");
+				pos = scanner.nextInt();
+				if (pos < 0) {
+					System.out.println("Invalid position");
 					break;
 				}
-				System.out.println("Enter the Value");
-				inputVal=scanner.nextInt();
-				list.insertAtPos(pos, inputVal);
-			}
-			
-			case 5 -> {
-				scanner.close();
+				System.out.print("Enter the data: ");
+				val = scanner.nextInt();
+				list.insertAtPos(pos, val);
+				break;
+			case 4:
+				System.out.println("Enter the pos(starts at 0): ");
+				pos = scanner.nextInt();
+				if (pos < 0) {
+					System.out.println("Invalid position");
+					break;
+				}
+				list.deleteAtPos(pos);
+				break;
+			case 5:
 				System.exit(0);
 
+			default:
+				System.out.println("Invalid Choice ");
+
 			}
-			default -> {
-				System.out.println("Entered wrong Key");
-			}
-			}
-			
 
 		}
 
 	}
+
 }
