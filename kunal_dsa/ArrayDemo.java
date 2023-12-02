@@ -3,7 +3,12 @@ package kunal_dsa;
 public class ArrayDemo {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		int[] nums = {1,2,4,5,6};
+		
+		for(int x:nums) {
+			System.out.println(x);
+		}
 
 	}
 
