@@ -1,17 +1,17 @@
 package java_dsa;
 
-import java.util.Arrays;
-
 public class DsaPractice {
 	public static void main(String[] args) {
 
-		int[] nums = { 1, 2, 3, 4, 5 };
+		int[] nums = { 1, 2, 31, 4, 5 };
 
 //		swapArray(nums, 1, 4);
 		
 //		reverseArray(nums);
-		reverseArrayoOnRange(nums, 1, 4);
-		System.out.println(Arrays.toString(nums));
+//		reverseArrayoOnRange(nums, 1, 4);
+//		System.out.println(Arrays.toString(nums));
+		System.out.println(maxVal(nums));
+		
 
 	}
 
@@ -48,4 +48,16 @@ public class DsaPractice {
 		}
 		
 	}
+	
+	static Integer maxVal(int arr[]) {
+		int maxVal=Integer.MIN_VALUE;
+		for(int i = 0; i<arr.length;i++) {
+			if(arr[i]>maxVal) {
+				maxVal=arr[i];
+			}
+		}
+		return maxVal;
+		
+	}
+	
 }
