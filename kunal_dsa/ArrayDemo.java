@@ -1,21 +1,20 @@
 package kunal_dsa;
 
+import java.util.Arrays;
+
 public class ArrayDemo {
 
 	public static void main(String[] args) {
+
+		int[] nums = { 1, 2, 3, 4 };
+
+		change(nums);
 		
-		int[] nums = {1,2,4,5,6};
-		
-		for(int x:nums) {
-			System.out.println(x);
-		}
-		
-		String name=null;
-		Integer num=null;
-	
-//		null can't be assigned for primitives
-//		char a = null;
-//		int n = null;
+		System.out.println(Arrays.toString(nums));
+
 	}
 
+	static void change(int[] arr) {
+		arr[1] = 3;
+	}
 }
