@@ -1,21 +1,30 @@
 package java_dsa;
 
-import java.util.Arrays;
-import java.util.function.BiPredicate;
-
 public class DsaPractice {
 	public static void main(String[] args) {
 
-		Integer nums[] = { 1, 4, 2, 5, 66 };
-
-		System.out.println(search.test(nums, 66));
+		int[][] nums = {
+				{100},
+				{1,2,4},
+				{1,2,5}
+		};
+		System.out.println(findMaxWealth(nums));
 
 	}
 
-//	static boolean search(int[] nums,int val) {
-//		return Arrays.stream(nums).anyMatch(n->n==val);	
-//	}
-
-	static BiPredicate<Integer[], Integer> search = (arr, val) -> Arrays.stream(arr).anyMatch(n -> n == val);
+	static int findMaxWealth(int[][] nums) {
+		
+		int ans = 0;
+		for(int i=0;i<nums.length;i++) {
+			int sum=0;
+			for(int j=0;j<nums[i].length;j++) {
+				sum+=nums[i][j];
+			}
+			if(ans<sum) {
+				ans=sum;
+			}
+		}
+		return ans;
+	}
 
 }
