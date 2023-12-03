@@ -9,9 +9,9 @@ public class DsaPractice {
 				{6,7,8}
 		};
 		
-		for(int i = 0;i<nums.length;i++) {
-			for(int j=0;j<nums[i].length;j++) {
-				System.out.print(nums[i][j]+" ");
+		for(int[] x:nums) {
+			for(int y:x) {
+				System.out.print(y+" ");
 			}
 			System.out.println();
 		}
