@@ -3,28 +3,49 @@ package java_dsa;
 public class DsaPractice {
 	public static void main(String[] args) {
 
-		int[][] nums = {
-				{100},
-				{1,2,4},
-				{1,2,5}
-		};
-		System.out.println(findMaxWealth(nums));
+		int nums[] = {1234,222,343,22,1,34};
+		
+		System.out.println(countDigits(nums));
+		
+		
 
 	}
-
-	static int findMaxWealth(int[][] nums) {
-		
-		int ans = 0;
-		for(int i=0;i<nums.length;i++) {
-			int sum=0;
-			for(int j=0;j<nums[i].length;j++) {
-				sum+=nums[i][j];
-			}
-			if(ans<sum) {
-				ans=sum;
+	
+	static int countDigits(int[] arr) {
+		int count=0;
+		for(int num:arr) {
+			if(isEven(num)) {
+				count++;
 			}
 		}
-		return ans;
+		return count;
 	}
+	
+	static boolean isEven(int num) {
+		int noOfDigits=checkDigits(num);
+		return noOfDigits%2==0;
+	}
+	
+//	static int checkDigits(int num) {
+//		int count=0;
+//		if(num==0) {
+//			return 1;
+//		}
+//		if(num<0) {
+//			num*=-1;
+//		}
+//		while(num>0) {
+//			count++;
+//			num/=10;
+//		}
+//		return count;
+//		
+//	}
+	
+	static int checkDigits(int num) {
+		return (int) Math.log10(num);
+	}
+
+	
 
 }
