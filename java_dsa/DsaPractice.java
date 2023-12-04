@@ -3,49 +3,46 @@ package java_dsa;
 public class DsaPractice {
 	public static void main(String[] args) {
 
-		int nums[] = {1234,222,343,22,1,34};
+	
+		int[] nums = {5,4,3,2,1};
 		
-		System.out.println(countDigits(nums));
 		
+		System.out.println(binarySearch(nums, 4));
 		
 
 	}
 	
-	static int countDigits(int[] arr) {
-		int count=0;
-		for(int num:arr) {
-			if(isEven(num)) {
-				count++;
+	static int binarySearch(int[] arr,int target) {
+		
+		int start = 0;
+		int end = arr.length-1;
+		boolean isAsc=arr[start]<arr[end];
+		
+		while(start<=end) {
+			int mid=start+(end-start)/2;
+			
+			if(arr[mid]==target) {
+				return mid;
+			}
+			if(isAsc) {
+				if(target>arr[mid]) {
+					start=mid+1;
+				}
+				else {
+					end=mid-1;
+				}
+			}
+			else {
+				if(target>arr[mid]) {
+					end=mid-1;
+				}
+				else {
+					start=mid+1;
+				}
 			}
 		}
-		return count;
+		
+		return -1;
 	}
-	
-	static boolean isEven(int num) {
-		int noOfDigits=checkDigits(num);
-		return noOfDigits%2==0;
-	}
-	
-//	static int checkDigits(int num) {
-//		int count=0;
-//		if(num==0) {
-//			return 1;
-//		}
-//		if(num<0) {
-//			num*=-1;
-//		}
-//		while(num>0) {
-//			count++;
-//			num/=10;
-//		}
-//		return count;
-//		
-//	}
-	
-	static int checkDigits(int num) {
-		return (int) Math.log10(num);
-	}
-
-	
 
 }
