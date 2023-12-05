@@ -5,18 +5,16 @@ public class DsaPractice {
 
 	
 		int numbers[]= {1,3,4,5,7};
-		System.out.println(ceiling(numbers,6));
+		System.out.println(floor(numbers,6));
 		
 
 	}
 	
-	static int ceiling(int arr[],int target) {
+	static int floor(int arr[],int target) {
 		int start = 0;
 		int end = arr.length-1;
 		boolean isAsc=arr[start]<arr[end];
-		if(target>arr[end]) {
-			return -1;
-		}
+		
 		
 		while(start<=end) {
 			int mid = start+(end-start)/2;
@@ -43,7 +41,7 @@ public class DsaPractice {
 			}
 			
 		}
-		return start;
+		return end;
 	}
 	
 
