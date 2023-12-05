@@ -5,7 +5,7 @@ public class DsaPractice {
 
 	
 		int numbers[]= {1,3,4,5,7};
-		System.out.println(ceiling(numbers,2));
+		System.out.println(ceiling(numbers,6));
 		
 
 	}
@@ -14,13 +14,14 @@ public class DsaPractice {
 		int start = 0;
 		int end = arr.length-1;
 		boolean isAsc=arr[start]<arr[end];
+		if(target>arr[end]) {
+			return -1;
+		}
 		
 		while(start<=end) {
 			int mid = start+(end-start)/2;
 			
-			if(target>arr[end]) {
-				return -1;
-			}
+			
 			if(target==arr[mid]) {
 				return mid;
 			}
