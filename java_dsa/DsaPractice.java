@@ -11,37 +11,42 @@ public class DsaPractice {
 
 	}
 
-	static int splitArray(int[] arr,int m) {
-		int start=0;
-		int end=0;
-		
-		for(int i =0;i<arr.length;i++) {
-			start = Math.max(start, arr[i]);
-			end+=arr[i];
-		}
-		
-		while(start<end) {
-			int mid=start+(end-start)/2;
-			int pieces=1;
-			int sum=0;
-			for(int num:arr) {
-				if(sum+num>mid) {
-					sum=num;
-					pieces++;
-				}
-				else {
-					sum+=num;
-				}
-			}
-			if(pieces<=m) {
-				end=mid;
-			}
-			else {
-				start=mid+1;
-			}
-		}
-		
-		
-		return start;
-	}
+	static public int splitArray(int[] arr, int k) {
+        int start = 0;
+        int end = 0;
+
+        for (int i : arr) {
+            start = Math.max(start, i);
+            end += i;
+        }
+
+        while (start < end) {
+            int mid = start + (end - start) / 2;
+            int pieces = countPieces(arr, mid);
+
+            if (pieces <= k) {
+                end = mid;
+            } else {
+                start = mid + 1;
+            }
+        }
+
+        return start;
+    }
+
+    static private int countPieces(int[] arr, int targetSum) {
+        int pieces = 1;
+        int sum = 0;
+
+        for (int num : arr) {
+            if (sum + num > targetSum) {
+                sum = num;
+                pieces++;
+            } else {
+                sum += num;
+            }
+        }
+
+        return pieces;
+    }
 }
