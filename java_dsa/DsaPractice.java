@@ -11,7 +11,7 @@ public class DsaPractice {
 
 	}
 
-	static int[] bubbleSort(int[] arr) {
+	static void bubbleSort(int[] arr) {
 		
 		for (int i = 0; i < arr.length; i++) {
 			boolean isSwap=false;
@@ -28,6 +28,6 @@ public class DsaPractice {
 			}
 
 		}
-		return arr;
+		
 	}
 }
