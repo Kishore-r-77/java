@@ -6,28 +6,38 @@ public class DsaPractice {
 	public static void main(String[] args) {
 
 		int[] nums = { 7, 2, 5, 10, 8 };
-		bubbleSort(nums);
+		selectionSort(nums);
 		System.out.println(Arrays.toString(nums));
+		
 
 	}
 
-	static void bubbleSort(int[] arr) {
-		
-		for (int i = 0; i < arr.length; i++) {
-			boolean isSwap=false;
-			for (int j = 1; j < arr.length - i; j++) {
-				if (arr[j] < arr[j - 1]) {
-					isSwap=true;
-					int temp = arr[j];
-					arr[j] = arr[j - 1];
-					arr[j - 1] = temp;
-				}
-			}
-			if(!isSwap) {
-				break;
-			}
-
+	static void selectionSort(int[] arr) {	
+		for(int i=0;i<arr.length;i++) {
+			int last = arr.length-1-i;
+			int max=getMaxIndex(arr,0,last);
+			
+			swapArray(arr, max, last);
+		}	
+				
+	}
+	
+	static void swapArray(int arr[],int index1, int index2) {
+		if (index1 >= arr.length || index2 >= arr.length) {
+		    System.out.println("Then index is out of bound");
 		}
-		
+		int temp=arr[index1];
+		arr[index1]=arr[index2];
+		arr[index2]=temp;
+	}
+	
+	static int getMaxIndex(int arr[],int start,int end) {
+		int max=0;
+		for(int i=start;i<=end;i++) {
+			if(arr[i]>arr[max]) {
+				max=i;
+			}
+		}
+		return max;
 	}
 }
