@@ -5,19 +5,23 @@ import java.util.Arrays;
 public class DsaPractice {
 	public static void main(String[] args) {
 
-		int[] nums = { 7, 2, 5, 10, 8 };
-		insertionSort(nums);
+		int[] nums = { 3,5,2,1,4 };
+		cyclicSort(nums);
 		System.out.println(Arrays.toString(nums));
 		
 
 	}
 
-	static void insertionSort(int[] arr) {	
-		for(int i=0;i<arr.length-1;i++) {
-			for(int j=i+1;j>0;j--) {
-				if(arr[j]<arr[j-1]) {
-					swapArray(arr, j, j-1);
-				}
+	static void cyclicSort(int[] arr) {	
+		
+		int i=0;
+		while(i<arr.length) {
+			int correct=arr[i]-1;
+			if(arr[i]!=arr[correct]) {
+				swapArray(arr, i, correct);
+			}
+			else {
+				i++;
 			}
 		}
 				
