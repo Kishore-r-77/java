@@ -4,11 +4,9 @@ class Practice {
 
 	public static void main(String[] args) {
 
-			String a="Kishore";
-			String b=a;
-			
-			b="Kish";
+			String a=new String("Kishore");
 			System.out.println(a);
+			
 	}
 		
 	
