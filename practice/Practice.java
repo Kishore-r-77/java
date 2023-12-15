@@ -4,8 +4,10 @@ class Practice {
 
 	public static void main(String[] args) {
 
-			String a=new String("Kishore");
-			System.out.println(a);
+			String a="Kishore";
+			String b="Kishore";
+			
+			System.out.println(a==b);
 			
 	}
 		
