@@ -4,13 +4,29 @@ class Practice {
 
 	public static void main(String[] args) {
 
-			String a=new String("Kishore");
-			String b=new String("Kishore");
-			System.out.println(a==b);
-			System.out.println(a.equals(b));
+			String name="Kishore";
+			name=reverseString(name);
+			System.out.println(name);
 			
 	}
-		
+	
+	
+		static String reverseString(String name) {
+			char[] reverseArray=name.toCharArray();
+			
+			int start=0;
+			int end = reverseArray.length-1;
+			while(start<end) {
+				char temp =reverseArray[start];
+				reverseArray[start]=reverseArray[end];
+				reverseArray[end]=temp;
+				start++;
+				end--;
+			}
+			String result=new String(reverseArray);
+			
+			return result;
+		}
 	
 	
 	
