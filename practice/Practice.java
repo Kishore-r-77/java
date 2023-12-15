@@ -7,6 +7,7 @@ class Practice {
 			String a=new String("Kishore");
 			String b=new String("Kishore");
 			System.out.println(a==b);
+			System.out.println(a.equals(b));
 			
 	}
 		
