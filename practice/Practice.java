@@ -1,15 +1,17 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
 
 	public static void main(String[] args) {
 
-		StringBuilder builder = new StringBuilder();
-		builder.append("Kishore");
+		String name="Kishore 5";
 		
-		builder.deleteCharAt(0);
 		
-		System.out.println(builder);
+		System.out.println(Arrays.toString(name.split(" ")));
+		
+		
 			
 	}
 	
