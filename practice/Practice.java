@@ -1,23 +1,19 @@
 package practice;
 
-import java.util.Arrays;
-
 class Practice {
 
 	public static void main(String[] args) {
 
-		String name="Kishore 5";
-		
-		
-		System.out.println(Arrays.toString(name.split(" ")));
-		
-		
-			
+	pattern1(5);
+
 	}
 	
-	
-		
-	
-	
-	
+	static void pattern1(int n) {
+		for(int row=1;row<=n;row++) {
+			for(int col=1;col<=row;col++) {
+				System.out.print("* ");
+			}
+			System.out.println();
+		}
+	}
 }
