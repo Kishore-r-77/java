@@ -3,17 +3,21 @@ package practice;
 class Practice {
 
 	public static void main(String[] args) {
-
-	pattern3(5);
+		
+		display(1);
 
 	}
 	
-	static void pattern3(int n) {
-		for(int row=1;row<=n;row++) {
-			for(int col=1;col<=row;col++) {
-				System.out.print(col+" ");
-			}
-			System.out.println();
+	static void display(int count) {
+		if(count==5) {
+			return;
 		}
+		
+		System.out.println("Hello Kishore");
+		display(++count);
+		
+		
 	}
+
+	
 }
