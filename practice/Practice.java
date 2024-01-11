@@ -1,32 +1,24 @@
 package practice;
 
-class Person extends Thread {
-	String name;
-
-	Person(String name) {
-		this.name = name;
-	}
-
-	public void run() {
-
-		for (int i = 0; i < 5; i++) {
-			System.out.println(i + " hello " + this.name);
-			try {
-				Thread.sleep(1000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-}
-
 class Practice {
 
 	public static void main(String[] args) {
-		Person kishore = new Person("Kishore");
-		Person ajay = new Person("Ajay");
-		kishore.start();
-		ajay.start();
+	
+		pattern2(5);
+		
+		
+		
 	}
+	
+	static void pattern2(int n) {
+		for(int row=1;row<=n;row++) {
+			for(int col=1;col<=row;col++) {
+				System.out.print("* ");
+			}
+			System.out.println();
+		}
+	}
+	
+	
 
 }
