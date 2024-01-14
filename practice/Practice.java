@@ -3,17 +3,15 @@ package practice;
 class Practice {
 
 	public static void main(String[] args) {
-		onetToN(5);
+		System.out.println(factorial(5));
 	}
 
-	static void onetToN(int n) {
-
-		if (n == 0) {
-			return;
+	static int factorial(int n) {
+		if (n <= 1) {
+			return 1;
 		}
+		return n * factorial(n - 1);
 
-		onetToN(n - 1);
-		System.out.print(n + " ");
 	}
 
 }
