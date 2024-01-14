@@ -7,8 +7,8 @@ class Practice {
 	}
 
 	static int productOfDigits(int n) {
-		if (n == 0) {
-			return 1;
+		if (n % 10 == n) {
+			return n;
 		}
 		int temp = n % 10;
 		return temp * productOfDigits(n / 10);
