@@ -3,14 +3,15 @@ package practice;
 class Practice {
 
 	public static void main(String[] args) {
-		System.out.println(sumOf1ToN(5));
+		System.out.println(sumOfDigits(1342));
 	}
 
-	static int sumOf1ToN(int n) {
-		if (n <= 1) {
-			return 1;
+	static int sumOfDigits(int n) {
+		if (n == 0) {
+			return 0;
 		}
-		return n + sumOf1ToN(n - 1);
+		int temp = n % 10;
+		return temp + sumOfDigits(n / 10);
 
 	}
 
