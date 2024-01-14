@@ -3,15 +3,15 @@ package practice;
 class Practice {
 
 	public static void main(String[] args) {
-		System.out.println(sumOfDigits(1342));
+		System.out.println(productOfDigits(1342));
 	}
 
-	static int sumOfDigits(int n) {
+	static int productOfDigits(int n) {
 		if (n == 0) {
-			return 0;
+			return 1;
 		}
 		int temp = n % 10;
-		return temp + sumOfDigits(n / 10);
+		return temp * productOfDigits(n / 10);
 
 	}
 
