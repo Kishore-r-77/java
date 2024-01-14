@@ -3,15 +3,17 @@ package practice;
 class Practice {
 
 	public static void main(String[] args) {
-		nto1(5);
+		onetToN(5);
 	}
 
-	static void nto1(int n) {
+	static void onetToN(int n) {
+
 		if (n == 0) {
 			return;
 		}
+
+		onetToN(n - 1);
 		System.out.print(n + " ");
-		nto1(n - 1);
 	}
 
 }
