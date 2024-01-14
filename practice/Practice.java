@@ -3,16 +3,20 @@ package practice;
 class Practice {
 
 	public static void main(String[] args) {
-		System.out.println(productOfDigits(1342));
+		triangle1(5, 0);
 	}
 
-	static int productOfDigits(int n) {
-		if (n % 10 == n) {
-			return n;
+	static void triangle1(int r, int c) {
+		if (r == 0) {
+			return;
 		}
-		int temp = n % 10;
-		return temp * productOfDigits(n / 10);
-
+		if (r > c) {
+			System.out.print("*");
+			triangle1(r, c + 1);
+		} else {
+			System.out.println();
+			triangle1(r - 1, 0);
+		}
 	}
 
 }
