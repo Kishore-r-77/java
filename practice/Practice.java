@@ -1,21 +1,30 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
 
 	public static void main(String[] args) {
-		triangle2(5, 0);
+		int[] arr = { 4, 2, 3, 1 };
+		bubbleSortRecursion(arr, arr.length - 1, 0);
+		System.out.println(Arrays.toString(arr));
 	}
 
-	static void triangle2(int r, int c) {
+	static void bubbleSortRecursion(int[] arr, int r, int c) {
 		if (r == 0) {
 			return;
 		}
 		if (r > c) {
-			triangle2(r, c + 1);
-			System.out.print("*");
+			if (arr[c] > arr[c + 1]) {
+				int temp = arr[c];
+				arr[c] = arr[c + 1];
+				arr[c + 1] = temp;
+			}
+			bubbleSortRecursion(arr, r, c + 1);
+
 		} else {
-			triangle2(r - 1, 0);
-			System.out.println();
+			bubbleSortRecursion(arr, r - 1, 0);
+
 		}
 	}
 
