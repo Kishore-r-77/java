@@ -6,26 +6,25 @@ class Practice {
 
 	public static void main(String[] args) {
 		int[] arr = { 4, 2, 3, 1 };
-		bubbleSortRecursion(arr, arr.length - 1, 0);
+		selectionSortRecursion(arr, arr.length - 1, 0, 0);
 		System.out.println(Arrays.toString(arr));
 	}
 
-	static void bubbleSortRecursion(int[] arr, int r, int c) {
+	static void selectionSortRecursion(int[] arr, int r, int c, int max) {
 		if (r == 0) {
 			return;
 		}
-		if (r > c) {
-			if (arr[c] > arr[c + 1]) {
-				int temp = arr[c];
-				arr[c] = arr[c + 1];
-				arr[c + 1] = temp;
+		if (c < r) {
+			if (arr[c] > arr[max]) {
+				selectionSortRecursion(arr, r, c + 1, c);
+			} else {
+				selectionSortRecursion(arr, r, c + 1, max);
 			}
-			bubbleSortRecursion(arr, r, c + 1);
-
 		} else {
-			bubbleSortRecursion(arr, r - 1, 0);
-
+			int temp = arr[max];
+			arr[max] = arr[r - 1];
+			arr[r - 1] = temp;
+			selectionSortRecursion(arr, r - 1, 0, 0);
 		}
 	}
-
 }
