@@ -11,10 +11,8 @@ public class DsaPractice {
 	public static int[] concatenationOfArray(int[] nums) {
 		int[] newArray = new int[nums.length * 2];
 		int n = nums.length;
-		for (int i = 0; i < n; i++) {
-			newArray[i] = nums[i];
-			newArray[i + n] = nums[i];
-		}
+		System.arraycopy(nums, 0, newArray, 0, n);
+		System.arraycopy(nums, 0, newArray, n, n);
 		return newArray;
 	}
 
