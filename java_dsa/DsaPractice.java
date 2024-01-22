@@ -10,11 +10,20 @@ public class DsaPractice {
 
 	static public int[] buildArray(int[] nums) {
 
-		int[] result = new int[nums.length];
+		// int[] result = new int[nums.length];
+		// for (int i = 0; i < nums.length; i++) {
+		// result[i] = nums[nums[i]];
+		// }
+		// return result;
+
+		int constant = nums.length;
 		for (int i = 0; i < nums.length; i++) {
-			result[i] = nums[nums[i]];
+			nums[i] += nums[nums[i]] % constant * constant;
 		}
-		return result;
+		for (int i = 0; i < nums.length; i++) {
+			nums[i] /= constant;
+		}
+		return nums;
 	}
 
 }
