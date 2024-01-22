@@ -13,18 +13,14 @@ public class DsaPractice {
 
 	}
 
-	public static int maxWealth(int[][] arr) {
-		int total = 0;
-		for (int i = 0; i < arr.length; i++) {
-			int sum = 0;
-			for (int j = 0; j < arr[i].length; j++) {
-				sum += arr[i][j];
-				if (total < sum) {
-					total = sum;
-				}
-			}
+	public static int maxWealth(int[][] accounts) {
+		int maxWealth = 0;
+		for (int[] customerAccounts : accounts) {
+			int customerWealth = Arrays.stream(customerAccounts).sum();
+			maxWealth = Math.max(maxWealth, customerWealth);
 		}
-		return total;
+
+		return maxWealth;
 	}
 
 }
