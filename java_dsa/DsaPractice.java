@@ -4,23 +4,20 @@ import java.util.Arrays;
 
 public class DsaPractice {
 	public static void main(String[] args) {
-		int[][] nums = {
-				{ 1, 5 },
-				{ 7, 3 },
-				{ 3, 5 }
-		};
-		System.out.println(maxWealth(nums));
+		// Input: nums = [2,5,1,3,4,7], n = 3
+		// Output: [2,3,5,4,1,7]
 
+		int[] nums = { 2, 5, 1, 3, 4, 7 };
+		System.out.println(Arrays.toString(shuffleArray(nums, 3)));
 	}
 
-	public static int maxWealth(int[][] accounts) {
-		int maxWealth = 0;
-		for (int[] customerAccounts : accounts) {
-			int customerWealth = Arrays.stream(customerAccounts).sum();
-			maxWealth = Math.max(maxWealth, customerWealth);
+	static int[] shuffleArray(int[] nums, int n) {
+		int[] result = new int[nums.length];
+		for (int i = 0; i < n; i++) {
+			result[2 * i] = nums[i]; // Elements from the first half
+			result[2 * i + 1] = nums[i + n]; // Elements from the second half
 		}
-
-		return maxWealth;
+		return result;
 	}
 
 }
