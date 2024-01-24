@@ -1,44 +1,22 @@
 package practice;
 
-abstract class Animal {
-	String name;
-	String category;
+class Person<T> {
+	T something;
 
-	abstract void makeNoise();
-
-	void display() {
-		System.out.println("I'm animal");
-	}
-}
-
-class Cat extends Animal {
-
-	@Override
-	void makeNoise() {
-		System.out.println("Meow Meow");
+	Person(T something) {
+		this.something = something;
 	}
 
-	void display() {
-		System.out.println("I'm Cat");
+	<K, V> void display(K random1, V random2) {
+		System.out.println("Hehe " + something + " " + random1 + " " + random2);
 	}
-
-	String getName() {
-		return name;
-	}
-
-	void setName(String name) {
-		this.name = name;
-	}
-
 }
 
 class Practice {
 
 	public static void main(String[] args) {
-		Cat cat = new Cat();
-		cat.setName("Kitty");
-		cat.makeNoise();
-		System.out.println(cat.name);
+		Person<String> kishore = new Person<>("Hai Kishore");
+		kishore.display(77, "Woah");
 	}
 
 }
