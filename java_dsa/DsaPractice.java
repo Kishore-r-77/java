@@ -1,23 +1,30 @@
 package java_dsa;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DsaPractice {
 	public static void main(String[] args) {
-		// Input: nums = [2,5,1,3,4,7], n = 3
-		// Output: [2,3,5,4,1,7]
+		// Input: candies = [2,3,5,1,3], extraCandies = 3
+		// Output: [true,true,true,false,true]
 
-		int[] nums = { 2, 5, 1, 3, 4, 7 };
-		System.out.println(Arrays.toString(shuffleArray(nums, 3)));
+		int[] candies = { 2, 3, 5, 1, 3 };
+		System.out.println(kidsWithCandies(candies, 3));
 	}
 
-	static int[] shuffleArray(int[] nums, int n) {
-		int[] result = new int[nums.length];
-		for (int i = 0; i < n; i++) {
-			result[2 * i] = nums[i]; // Elements from the first half
-			result[2 * i + 1] = nums[i + n]; // Elements from the second half
+	public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+		List<Boolean> resultArray = new ArrayList<>();
+		int maxCandies = 0;
+		for (int singleCandies : candies) {
+			maxCandies = Math.max(maxCandies, singleCandies);
+
 		}
-		return result;
+
+		for (int singleCandies : candies) {
+			resultArray.add(singleCandies + extraCandies >= maxCandies);
+		}
+
+		return resultArray;
 	}
 
 }
