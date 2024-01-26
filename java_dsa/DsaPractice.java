@@ -1,30 +1,21 @@
 package java_dsa;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DsaPractice {
 	public static void main(String[] args) {
-		// Input: candies = [2,3,5,1,3], extraCandies = 3
-		// Output: [true,true,true,false,true]
-
-		int[] candies = { 2, 3, 5, 1, 3 };
-		System.out.println(kidsWithCandies(candies, 3));
+		int[] nums = { 1, 2, 3, 1, 1, 3 };
+		System.out.println(goodPairs(nums));
 	}
 
-	public static List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
-		List<Boolean> resultArray = new ArrayList<>();
-		int maxCandies = 0;
-		for (int singleCandies : candies) {
-			maxCandies = Math.max(maxCandies, singleCandies);
-
+	static int goodPairs(int[] nums) {
+		int count = 0;
+		for (int i = 0; i < nums.length - 1; i++) {
+			for (int j = i + 1; j < nums.length; j++) {
+				if (nums[i] == nums[j]) {
+					count += 1;
+				}
+			}
 		}
-
-		for (int singleCandies : candies) {
-			resultArray.add(singleCandies + extraCandies >= maxCandies);
-		}
-
-		return resultArray;
+		return count;
 	}
 
 }
