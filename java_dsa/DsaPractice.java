@@ -2,38 +2,28 @@ package java_dsa;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class DsaPractice {
-	// Input: nums = [0,1,2,3,4], index = [0,1,2,2,1]
-	// Output: [0,4,1,3,2]
-	// Explanation:
-	// nums index target
-	// 0 0 [0]
-	// 1 1 [0,1]
-	// 2 2 [0,1,2]
-	// 3 2 [0,1,3,2]
-	// 4 1 [0,4,1,3,2]
+	// Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
+	// Output: true
 	public static void main(String[] args) {
-		int[] nums = { 0, 1, 2, 3, 4 };
-		int[] index = { 0, 1, 2, 2, 1 };
-		System.out.println(Arrays.toString(createTargetArray(nums, index)));
+		String alphabets = "abcdefghijklmnopqrstuvwxyz";
+		String sentence = "leetcode";
+		System.out.println(isPangram(alphabets, sentence));
 	}
 
-	static int[] createTargetArray(int[] nums, int[] index) {
-		int[] target = new int[nums.length];
+	static boolean isPangram(String alphabets, String sentence) {
 
-		List<Integer> newArray = new ArrayList<>();
+		char[] charArray = alphabets.toCharArray();
+		for (char letter : charArray) {
+			String letterElements = String.valueOf(letter);
+			return sentence.contains(letterElements);
 
-		for (int i = 0; i < nums.length; i++) {
-			newArray.add(index[i], nums[i]);
 		}
-
-		for (int i = 0; i < nums.length; i++) {
-			target[i] = newArray.get(i);
-		}
-
-		return target;
+		return false;
 	}
 
 }
