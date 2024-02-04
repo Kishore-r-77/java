@@ -15,14 +15,25 @@ class Practice {
 	static Boolean isAnagram(String name1, String name2) {
 		char[] array1 = name1.toLowerCase().toCharArray();
 		char[] array2 = name2.toLowerCase().toCharArray();
-		Arrays.sort(array1);
-		Arrays.sort(array2);
-		System.out.println(array1);
-		System.out.println(array1);
+		// Arrays.sort(array1);
+		// Arrays.sort(array2);
+		sortArray(array1);
+		sortArray(array2);
 
-		System.out.println(array1);
 		return Arrays.equals(array1, array2);
 
+	}
+
+	static void sortArray(char[] array) {
+		for (int i = 0; i < array.length; i++) {
+			for (int j = 0; j < array.length - 1; j++) {
+				if (array[j] > array[j + 1]) {
+					char temp = array[j];
+					array[j] = array[j + 1];
+					array[j + 1] = temp;
+				}
+			}
+		}
 	}
 
 }
