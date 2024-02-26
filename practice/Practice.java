@@ -1,39 +1,30 @@
 package practice;
 
-import java.util.Arrays;
+interface Kishore {
+	default void display() {
+		System.out.println("I'm a Kishore");
+	}
+}
+
+interface Ash {
+	default void display() {
+		System.out.println("I'm Ash");
+	}
+}
+
+class Son implements Kishore, Ash {
+	@Override
+	public void display() {
+
+		Ash.super.display();
+	}
+
+}
 
 class Practice {
-
 	public static void main(String[] args) {
-		String name1 = "Listen";
-		String name2 = "Silent";
-
-		System.out.println(isAnagram(name1, name2));
-
-	}
-
-	static Boolean isAnagram(String name1, String name2) {
-		char[] array1 = name1.toLowerCase().toCharArray();
-		char[] array2 = name2.toLowerCase().toCharArray();
-		// Arrays.sort(array1);
-		// Arrays.sort(array2);
-		sortArray(array1);
-		sortArray(array2);
-
-		return Arrays.equals(array1, array2);
-
-	}
-
-	static void sortArray(char[] array) {
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array.length - 1; j++) {
-				if (array[j] > array[j + 1]) {
-					char temp = array[j];
-					array[j] = array[j + 1];
-					array[j + 1] = temp;
-				}
-			}
-		}
+		Son son = new Son();
+		son.display();
 	}
 
 }
