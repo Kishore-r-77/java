@@ -1,47 +1,42 @@
 package practice;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 class Practice {
 	public static void main(String[] args) {
-		// Output: [[1,0,0],[0,1,0],[1,1,1]]
+		// Output: 25
 
-		int[][] image = {
-				{ 1 },
+		int[][] mat = {
+				{ 1, 1, 1, 1 },
+				{ 1, 1, 1, 1 },
+				{ 1, 1, 1, 1 },
+				{ 1, 1, 1, 1 },
 
 		};
 
-		System.out.println(Arrays.deepToString(flipAndInvertImage(image)));
+		System.out.println(diagonalSum(mat));
 
 	}
 
-	static public int[][] flipAndInvertImage(int[][] image) {
-		int start = 0;
-		int end = image.length - 1;
-		for (int[] innerArray : image) {
-			while (start <= end) {
-				int temp = innerArray[start];
-				innerArray[start++] = innerArray[end] ^ 1;
-				innerArray[end--] = temp ^ 1;
-			}
+	static public int diagonalSum(int[][] mat) {
+		int n = mat.length;
+		int sum = 0;
+
+		for (int i = 0; i < n; i++) {
+			sum += mat[i][i]; // Sum of primary diagonal elements
+			sum += mat[i][n - i - 1]; // Sum of secondary diagonal elements
 		}
 
-		return image;
-	}
-
-	static int[] swapArray(int[] arr, int start, int end) {
-
-		int[] result = new int[arr.length];
-		if (start <= end) {
-
-			while (start <= end) {
-				result[start] = arr[end];
-				result[end] = arr[start];
-				start++;
-				end--;
-			}
+		// If the matrix size is odd, we've counted the middle element twice
+		if (n % 2 == 1) {
+			sum -= mat[n / 2][n / 2];
 		}
-		return result;
+
+		return sum;
 	}
+
 }
