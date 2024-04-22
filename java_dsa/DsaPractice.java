@@ -3,45 +3,41 @@ package java_dsa;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 
 public class DsaPractice {
 
 	public static void main(String[] args) {
-		// Input: matrix = [[3,7,8],[9,11,13],[15,16,17]]
-		// Output: [15]
-		// Explanation: 15 is the only lucky number since it is the minimum in its row
-		// and the maximum in its column.
+		// Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+		// Output: [1,2,3,6,9,8,7,4,5]
 
 		int[][] nums = {
-				{ 3, 7, 8 },
-				{ 9, 11, 13 },
-				{ 15, 16, 17 }
+				{ 1, 2, 3 },
+				{ 4, 5, 6 },
+				{ 7, 8, 9 }
 		};
-		System.out.println(luckyNumbers(nums));
+		System.out.println(spriralOrder(nums));
 
 	}
 
-	static public List<Integer> luckyNumbers(int[][] matrix) {
+	static public List<Integer> spriralOrder(int[][] matrix) {
 
 		List<Integer> output = new ArrayList<>();
-		int minRow = 0;
-		int maxCol = 0;
-		for (int i = 0; i < matrix.length; i++) {
-			int index = 0;
-			for (int j = 0; j < matrix[i].length; j++) {
-				if (minRow > matrix[i][j]) {
-					minRow = matrix[i][j];
-					index = i;
-				}
-				if (maxCol < matrix[j][i]) {
-					maxCol = matrix[j][index];
+		int rows = matrix.length;
+		int columns = matrix[0].length;
+		int top = 0;
+		int bottom = rows - 1;
+		int left = 0;
+		int right = columns - 1;
 
-				}
+		while (top <= bottom && left <= right) {
+			// left to right
+			for (int i = left; i <= right; i++) {
+				output.add(matrix[top][i]);
 			}
+			top++;
+
 		}
 
-		output.add(maxCol);
 		return output;
 	}
 
