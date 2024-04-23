@@ -1,39 +1,48 @@
 package practice;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class Practice {
 	public static void main(String[] args) {
 		// Input: s = "A man, a plan, a canal: Panama"
 		// Output: true
 
-		String s = "A man, a plan, a canal: Panama";
+		String s = "abca";
 
-		System.out.println(isPalindrome(s));
+		System.out.println(validPalindrome(s));
 	}
 
-	static public boolean isPalindrome(String input) {
-		char[] inputArray = input.toLowerCase().toCharArray();
-
-		List<Character> listOfCharacter = new ArrayList<>();
-		for (char c : inputArray) {
-			if (Character.isLetterOrDigit(c)) {
-				listOfCharacter.add(c);
-			}
-		}
+	static public boolean validPalindrome(String s) {
 		int start = 0;
-		int end = listOfCharacter.size() - 1;
-		System.out.println(listOfCharacter);
+		int end = s.length() - 1;
+
 		while (start < end) {
-			if (listOfCharacter.get(start) != listOfCharacter.get(end)) {
+			if (s.charAt(start) != s.charAt(end)) {
+				if (isPalindrome(start + 1, end, s)) {
+					return true;
+				}
+				if (isPalindrome(start, end - 1, s)) {
+					return true;
+				}
 				return false;
 			}
 			start++;
 			end--;
 		}
-
 		return true;
+
+	}
+
+	static public boolean isPalindrome(int start, int end, String s) {
+
+		while (start < end) {
+			if (s.charAt(start) != s.charAt(end)) {
+
+				return false;
+			}
+			start++;
+			end--;
+		}
+		return true;
+
 	}
 
 }
