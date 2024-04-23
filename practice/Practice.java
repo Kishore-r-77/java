@@ -1,48 +1,39 @@
 package practice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Practice {
 	public static void main(String[] args) {
-		// Input: s = "A man, a plan, a canal: Panama"
-		// Output: true
+		// Input: word1 = "abc", word2 = "pqr"
+		// Output: "apbqcr"
 
-		String s = "abca";
+		String word1 = "abc";
+		String word2 = "pqr";
 
-		System.out.println(validPalindrome(s));
+		System.out.println(mergeAlternately(word1, word2));
 	}
 
-	static public boolean validPalindrome(String s) {
-		int start = 0;
-		int end = s.length() - 1;
-
-		while (start < end) {
-			if (s.charAt(start) != s.charAt(end)) {
-				if (isPalindrome(start + 1, end, s)) {
-					return true;
-				}
-				if (isPalindrome(start, end - 1, s)) {
-					return true;
-				}
-				return false;
-			}
-			start++;
-			end--;
+	static public String mergeAlternately(String word1, String word2) {
+		String output = "";
+		List<String> resultArray = new ArrayList<>();
+		char[] word1Array = word1.toCharArray();
+		char[] word2Array = word2.toCharArray();
+		int minlength = Math.min(word1Array.length, word2Array.length);
+		for (int i = 0; i < minlength; i++) {
+			resultArray.add(word1Array[i] + "");
+			resultArray.add(word2Array[i] + "");
 		}
-		return true;
-
-	}
-
-	static public boolean isPalindrome(int start, int end, String s) {
-
-		while (start < end) {
-			if (s.charAt(start) != s.charAt(end)) {
-
-				return false;
-			}
-			start++;
-			end--;
+		for (int i = minlength; i < word1Array.length; i++) {
+			resultArray.add(word1Array[i] + "");
 		}
-		return true;
-
+		for (int i = minlength; i < word2Array.length; i++) {
+			resultArray.add(word2Array[i] + "");
+		}
+		for (String c : resultArray) {
+			output += c;
+		}
+		return output;
 	}
 
 }
