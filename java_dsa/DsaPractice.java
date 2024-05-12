@@ -5,27 +5,20 @@ import java.util.Arrays;
 public class DsaPractice {
 
 	public static void main(String[] args) {
-		// Input: nums = [0,2,1,5,3,4]
-		// Output: [0,1,2,4,5,3]
+		// Input: n = 5
+		// Output: [-7,-1,1,3,4]
 
-		int[] nums = {
-				0, 2, 1, 5, 3, 4
-		};
-
-		System.out.println(Arrays.toString(buildArray(nums)));
+		System.out.println(Arrays.toString(sumZero(5)));
 
 	}
 
-	static public int[] buildArray(int[] nums) {
-
-		for (int i = 0; i < nums.length; i++) {
-			nums[i] += nums[nums[i]] % nums.length * nums.length;
-		}
-		for (int i = 0; i < nums.length; i++) {
-			nums[i] /= nums.length;
+	static public int[] sumZero(int n) {
+		int[] result = new int[n];
+		for (int i = 1; i < n; i++) {
+			result[i] = i * 2 - n + 1;
 		}
 
-		return nums;
+		return result;
 	}
 
 }
