@@ -1,24 +1,38 @@
 package java_dsa;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DsaPractice {
 
 	public static void main(String[] args) {
-		// Input: n = 5
-		// Output: [-7,-1,1,3,4]
+		// Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
+		// Output: 6
 
-		System.out.println(Arrays.toString(sumZero(5)));
+		int[] nums = {
+				-2, 1, -3, 4, -1, 2, 1, -5, 4
+		};
+
+		System.out.println(maxSubArray(nums));
 
 	}
 
-	static public int[] sumZero(int n) {
-		int[] result = new int[n];
-		for (int i = 1; i < n; i++) {
-			result[i] = i * 2 - n + 1;
-		}
+	static public int maxSubArray(int[] nums) {
+		int currentSum = 0;
+		int maxSum = nums[0];
 
-		return result;
+		for (int i = 0; i < nums.length; i++) {
+			if (currentSum + nums[i] > nums[i]) {
+				currentSum = currentSum + nums[i];
+			} else {
+				currentSum = nums[i];
+			}
+
+			if (maxSum < currentSum) {
+				maxSum = currentSum;
+			}
+		}
+		return maxSum;
 	}
 
 }

@@ -1,39 +1,25 @@
 package practice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 class Practice {
 	public static void main(String[] args) {
+		int[] nums = { 2, 1, 1, 2, 3, 5, 1, 2, 4 };
 
-		int n = 5;
-		pattern(n);
-
+		System.out.println(recurring(nums));
 	}
 
-	static void pattern(int n) {
-		for (int i = 0; i <= 2 * n; i++) {
-			int c = i > n ? 2 * n - i : i;
-			for (int j = 0; j < c; j++) {
-				if (j == 0 || j == c - 1) {
-					System.out.print("*");
-				} else {
-					System.out.print(" ");
-				}
+	static int recurring(int[] nums) {
+		Map<Integer, Integer> hashTable = new HashMap<>();
+		for (int i = 0; i < nums.length; i++) {
+			if (hashTable.containsKey(nums[i])) {
+				return nums[i];
+			} else {
+				hashTable.put(nums[i], i);
 			}
-			for (int j = 0; j < n - c; j++) {
-				System.out.print(" ");
-			}
-			for (int j = 0; j < n - c; j++) {
-				System.out.print(" ");
-			}
-			for (int j = 0; j < c; j++) {
-				if (j == 0 || j == c - 1) {
-					System.out.print("*");
-				} else {
-					System.out.print(" ");
-				}
-			}
-			System.out.println();
-
 		}
+		return -1;
 	}
 
 }
