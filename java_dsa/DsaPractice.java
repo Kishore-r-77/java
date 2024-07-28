@@ -1,38 +1,36 @@
 package java_dsa;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class DsaPractice {
 
 	public static void main(String[] args) {
-		// Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
-		// Output: 6
-
-		int[] nums = {
-				-2, 1, -3, 4, -1, 2, 1, -5, 4
-		};
-
-		System.out.println(maxSubArray(nums));
 
 	}
 
-	static public int maxSubArray(int[] nums) {
-		int currentSum = 0;
-		int maxSum = nums[0];
+	static int binarySearch(int start, int end, int[] arr, int target) {
+		while (start <= end) {
+			int mid = start + (end - start) / 2;
 
-		for (int i = 0; i < nums.length; i++) {
-			if (currentSum + nums[i] > nums[i]) {
-				currentSum = currentSum + nums[i];
-			} else {
-				currentSum = nums[i];
+			boolean isAsc = arr[start] < arr[end];
+			if (arr[mid] == target) {
+				return mid;
 			}
 
-			if (maxSum < currentSum) {
-				maxSum = currentSum;
+			if (isAsc) {
+
+				if (arr[mid] > target) {
+					end = mid - 1;
+				} else {
+					start = mid + 1;
+				}
+			} else {
+				if (arr[mid] > target) {
+					start = mid + 1;
+				} else {
+					end = mid - 1;
+				}
+
 			}
 		}
-		return maxSum;
+		return -1;
 	}
-
 }
