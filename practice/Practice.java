@@ -1,16 +1,32 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
 	public static void main(String[] args) {
-		recursion(0);
+		int[] nums = { 5, 4, 3, 2, 1 };
+
+		bubbleSort(nums);
+		System.out.println(Arrays.toString(nums));
+
 	}
 
-	static public void recursion(int n) {
-		if (n == 5) {
-			return;
+	static void bubbleSort(int[] arr) {
+
+		for (int i = 0; i < arr.length - 1; i++) {
+			for (int j = 1; j < arr.length - i; j++) {
+				if (arr[j] < arr[j - 1]) {
+					swap(arr, j, j - 1);
+				}
+			}
 		}
-		System.out.println("The number is " + n);
-		recursion(n++);
+
+	}
+
+	static void swap(int[] arr, int start, int end) {
+		int temp = arr[start];
+		arr[start] = arr[end];
+		arr[end] = temp;
 	}
 
 }
