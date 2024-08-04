@@ -6,19 +6,28 @@ class Practice {
 	public static void main(String[] args) {
 		int[] nums = { 5, 4, 3, 2, 1 };
 
-		insertionSort(nums);
+		selectionSort(nums);
 		System.out.println(Arrays.toString(nums));
 
 	}
 
-	static void insertionSort(int[] arr) {
-		for (int i = 1; i < arr.length; i++) {
-			for (int j = i; j > 0; j--) {
-				if (arr[j] < arr[j - 1]) {
-					swap(arr, j, j - 1);
-				}
+	static void selectionSort(int[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+
+			int maxIndex = getMaxIndex(arr, 0, arr.length - i - 1);
+			swap(arr, maxIndex, arr.length - i - 1);
+		}
+	}
+
+	static int getMaxIndex(int[] arr, int start, int end) {
+		int maxIndex = start;
+		for (int i = 0; i <= end; i++) {
+			if (arr[maxIndex] < arr[i]) {
+				maxIndex = i;
 			}
 		}
+
+		return maxIndex;
 
 	}
 
