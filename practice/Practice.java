@@ -3,69 +3,81 @@ package practice;
 import java.util.Arrays;
 
 class CustomArrays {
-	int data[];
-
-	int size;
-
+	int arr[];
 	int capacity;
-
-	int DEFAULT_CAPACITY = 10;
+	int size;
+	final int DEFAULT_CAPACITY = 10;
 
 	CustomArrays() {
-		this.capacity = DEFAULT_CAPACITY;
-		this.data = new int[capacity];
-	}
-
-	void expandArray() {
-		capacity *= 2;
-		data = Arrays.copyOf(data, capacity);
-	}
-
-	void shrinkArray() {
-		capacity /= 2;
-		data = Arrays.copyOf(data, capacity);
-	}
-
-	void display() {
-		for (int i = 0; i < data.length; i++) {
-			System.out.print(data[i] + " ");
-		}
-		System.out.println();
+		capacity = DEFAULT_CAPACITY;
+		arr = new int[capacity];
 	}
 
 	void add(int val) {
 		if (size == capacity) {
 			expandArray();
 		}
-		data[size++] = val;
+		arr[size++] = val;
 	}
 
-	// [3,2,5,2,7,9,8]
-	void insertAtPos(int val, int pos) {
+	void insertAtPosition(int pos, int val) {
+		if (pos < 0 || pos > size) {
+			System.out.println("Invalid position");
+			return;
+		}
 		if (size == capacity) {
 			expandArray();
 		}
 		for (int i = size - 1; i >= pos; i--) {
-			data[i + 1] = data[i];
+			arr[i + 1] = arr[i];
 		}
-		data[pos] = val;
+		arr[pos] = val;
 		size++;
 	}
 
-	void deleteAtEnd() {
+	void deleteAtPos(int pos) {
+		if (pos < 0 || pos >= size) {
+			System.out.println("Invalid position");
+			return;
+		}
+		for (int i = pos + 1; i < size; i++) {
+			arr[i - 1] = arr[i];
+		}
+		size--;
+		if (capacity > DEFAULT_CAPACITY && capacity > 3 * size) {
+			shrinkArray();
+		}
+	}
 
+	void display() {
+		for (int i = 0; i < arr.length; i++) {
+			System.out.print(arr[i] + " ");
+		}
+		System.out.println();
+	}
+
+	void expandArray() {
+		capacity *= 2;
+		arr = Arrays.copyOf(arr, capacity);
+	}
+
+	void shrinkArray() {
+		capacity /= 2;
+		arr = Arrays.copyOf(arr, capacity);
 	}
 }
 
 class Practice {
 	public static void main(String[] args) {
-		CustomArrays customArrays = new CustomArrays();
-		customArrays.add(1);
-		customArrays.add(2);
-		customArrays.add(3);
-		customArrays.add(4);
-		customArrays.insertAtPos(7, 1);
-		customArrays.display();
+		CustomArrays arrays = new CustomArrays();
+
+		arrays.add(1);
+		arrays.add(2);
+		arrays.insertAtPosition(9, 10);
+		arrays.deleteAtPos(9);
+
+		arrays.display();
+
 	}
 
 }
