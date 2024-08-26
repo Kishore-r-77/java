@@ -6,22 +6,19 @@ class Practice {
 	public static void main(String[] args) {
 
 		int[] nums = { 5, 4, 3, 2, 1 };
-		bubbleSort(nums);
+		insertion(nums);
 		System.out.println(Arrays.toString(nums));
 	}
 
-	static void bubbleSort(int[] arr) {
+	static void insertion(int[] arr) {
 
 		for (int i = 0; i < arr.length - 1; i++) {
-			boolean isSwap = false;
-			for (int j = 1; j < arr.length; j++) {
+			for (int j = i + 1; j > 0; j--) {
 				if (arr[j] < arr[j - 1]) {
-					isSwap = true;
 					swap(arr, j, j - 1);
+				} else {
+					break;
 				}
-			}
-			if (!isSwap) {
-				break;
 			}
 		}
 	}
