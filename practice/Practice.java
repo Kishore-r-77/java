@@ -1,83 +1,78 @@
 package practice;
 
-import java.util.Arrays;
+class CircularLinkedList {
 
-class CustomArrays {
-	int arr[];
-	int capacity;
-	int size;
-	final int DEFAULT_CAPACITY = 10;
+	Node head;
+	Node tail;
 
-	CustomArrays() {
-		capacity = DEFAULT_CAPACITY;
-		arr = new int[capacity];
-	}
+	private class Node {
+		int data;
+		Node next;
 
-	void add(int val) {
-		if (size == capacity) {
-			expandArray();
+		Node(int val) {
+			this.data = val;
+			this.next = null;
 		}
-		arr[size++] = val;
 	}
 
-	void insertAtPosition(int pos, int val) {
-		if (pos < 0 || pos > size) {
-			System.out.println("Invalid position");
+	void insert(int val) {
+		Node newNode = new Node(val);
+		if (head == null) {
+			head = newNode;
+			tail = newNode;
 			return;
 		}
-		if (size == capacity) {
-			expandArray();
-		}
-		for (int i = size - 1; i >= pos; i--) {
-			arr[i + 1] = arr[i];
-		}
-		arr[pos] = val;
-		size++;
-	}
-
-	void deleteAtPos(int pos) {
-		if (pos < 0 || pos >= size) {
-			System.out.println("Invalid position");
-			return;
-		}
-		for (int i = pos + 1; i < size; i++) {
-			arr[i - 1] = arr[i];
-		}
-		size--;
-		if (capacity > DEFAULT_CAPACITY && capacity > 3 * size) {
-			shrinkArray();
-		}
+		tail.next = newNode;
+		newNode.next = head;
+		tail = newNode;
 	}
 
 	void display() {
-		for (int i = 0; i < arr.length; i++) {
-			System.out.print(arr[i] + " ");
+		Node temp = head;
+		do {
+			System.out.print(temp.data + " ");
+			temp = temp.next;
+		} while (temp != head);
+	}
+
+	void delete(int val) {
+
+		Node temp = head;
+
+		if (head == null) {
+			return;
 		}
-		System.out.println();
+		if (head == tail) {
+			head = null;
+			tail = null;
+			return;
+		}
+		if (head.data == val) {
+			head = head.next;
+			tail = head;
+			return;
+		}
+
+		while (temp.next.data != val) {
+			temp = temp.next;
+		}
+		temp.next = temp.next.next;
+
 	}
 
-	void expandArray() {
-		capacity *= 2;
-		arr = Arrays.copyOf(arr, capacity);
-	}
-
-	void shrinkArray() {
-		capacity /= 2;
-		arr = Arrays.copyOf(arr, capacity);
-	}
 }
 
 class Practice {
 	public static void main(String[] args) {
-		CustomArrays arrays = new CustomArrays();
 
-		arrays.add(1);
-		arrays.add(2);
-		arrays.insertAtPosition(9, 10);
-		arrays.deleteAtPos(9);
+		CircularLinkedList circularLinkedList = new CircularLinkedList();
 
-		arrays.display();
-
+		circularLinkedList.insert(0);
+		circularLinkedList.insert(1);
+		circularLinkedList.insert(2);
+		circularLinkedList.insert(3);
+		circularLinkedList.delete(3);
+		circularLinkedList.display();
 	}
 
 }
