@@ -1,44 +1,59 @@
 package practice;
 
-import java.util.Arrays;
+class BinarySearchTree {
+
+	Node root;
+
+	private class Node {
+		int data;
+		Node left, right;
+
+		Node(int val) {
+			this.data = val;
+			left = right = null;
+		}
+	}
+
+	BinarySearchTree() {
+
+	}
+
+	BinarySearchTree(int val) {
+		root = new Node(val);
+	}
+
+	Node insertNode(Node root, int val) {
+
+		if (root == null) {
+			return new Node(val);
+		}
+		if (val < root.data) {
+			root.left = insertNode(root.left, val);
+		} else {
+			root.right = insertNode(root.right, val);
+		}
+		return root;
+
+	}
+
+	void preOrderTraversal(Node root) {
+		if (root != null) {
+			System.out.print(root.data + " ");
+			preOrderTraversal(root.left);
+			preOrderTraversal(root.right);
+		}
+
+	}
+}
 
 class Practice {
 	public static void main(String[] args) {
+		BinarySearchTree binaryTree = new BinarySearchTree(10);
 
-		int[] nums = { 5, 4, 3, 2, 1, 0 };
-		quicksort(nums, 0, nums.length - 1);
-		System.out.println(Arrays.toString(nums));
-	}
+		binaryTree.insertNode(binaryTree.root, 6);
+		binaryTree.insertNode(binaryTree.root, 7);
 
-	static void quicksort(int[] arr, int low, int high) {
-		if (low >= high) {
-			return;
-		}
-		int start = low;
-		int end = high;
-		int mid = start + (end - start) / 2;
-		int pivot = arr[mid];
-		while (start <= end) {
-			while (arr[start] < pivot) {
-				start++;
-			}
-			while (arr[end] > pivot) {
-				end--;
-			}
-			if (start <= end) {
-				swap(arr, start, end);
-				start++;
-				end--;
-			}
-		}
-		quicksort(arr, low, end);
-		quicksort(arr, start, high);
-	}
-
-	static void swap(int[] arr, int start, int end) {
-		int temp = arr[start];
-		arr[start] = arr[end];
-		arr[end] = temp;
+		binaryTree.preOrderTraversal(binaryTree.root);
 	}
 
 }
