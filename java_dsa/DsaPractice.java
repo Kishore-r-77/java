@@ -7,20 +7,38 @@ public class DsaPractice {
 	public static void main(String[] args) {
 		int[] arr = { 5, 4, 3, 2, 1 };
 
-		cyclicSort(arr, 0, arr.length - 1);
+		quickSort(arr, 0, arr.length - 1);
 
 		System.out.println(Arrays.toString(arr));
 
 	}
 
-	static void cyclicSort(int[] arr, int low, int high) {
+	static void quickSort(int[] arr, int low, int high) {
 
-		for (int i = 0; i < arr.length; i++) {
-			int correctIndex = arr[i] - 1;
-			if (arr[correctIndex] != arr[i]) {
-				swap(arr, i, correctIndex);
+		if (low >= high) {
+			return;
+		}
+
+		int start = low;
+		int end = high;
+		int mid = start + (end - start) / 2;
+		int pivot = arr[mid];
+
+		while (start <= end) {
+			while (arr[start] < pivot) {
+				start++;
+			}
+			while (pivot < arr[end]) {
+				end--;
+			}
+			if (start <= end) {
+				swap(arr, start, end);
+				start++;
+				end--;
 			}
 		}
+		quickSort(arr, low, end);
+		quickSort(arr, start, high);
 
 	}
 
