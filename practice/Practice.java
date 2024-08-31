@@ -1,42 +1,38 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
 	public static void main(String[] args) {
 
-		int[] arr = { 1, 2, 3, 4, 5 };
+		int[] arr = { 5, 4, 3, 2, 1 };
 
-		System.out.println(binarySearch(arr, 3));
+		bubbleSort(arr);
+		System.out.println(Arrays.toString(arr));
 
 	}
 
-	static int binarySearch(int[] arr, int val) {
-		int start = 0;
-		int end = arr.length - 1;
+	static void bubbleSort(int[] arr) {
 
-		boolean isAsc = arr[start] < arr[end];
-
-		while (start <= end) {
-			int mid = start + (end - start) / 2;
-
-			if (arr[mid] == val) {
-				return mid;
+		for (int i = 0; i < arr.length - 1; i++) {
+			boolean isSwap = false;
+			for (int j = 1; j < arr.length; j++) {
+				if (arr[j] < arr[j - 1]) {
+					swap(arr, j, j - 1);
+					isSwap = true;
+				}
 			}
-			if (isAsc) {
-				if (val < arr[mid]) {
-					end = mid - 1;
-				} else {
-					start = mid + 1;
-				}
-			} else {
-				if (val < arr[mid]) {
-					start = mid + 1;
-				} else {
-					end = mid - 1;
-				}
+			if (!isSwap) {
+				break;
 			}
 
 		}
-		return -1;
+	}
+
+	static void swap(int[] arr, int start, int end) {
+		int temp = arr[start];
+		arr[start] = arr[end];
+		arr[end] = temp;
 	}
 
 }
