@@ -1,36 +1,33 @@
 package java_dsa;
 
+import java.util.Arrays;
+
 public class DsaPractice {
 
 	public static void main(String[] args) {
+		int[] arr = { 5, 4, 3, 2, 1 };
+
+		cyclicSort(arr, 0, arr.length - 1);
+
+		System.out.println(Arrays.toString(arr));
 
 	}
 
-	static int binarySearch(int start, int end, int[] arr, int target) {
-		while (start <= end) {
-			int mid = start + (end - start) / 2;
+	static void cyclicSort(int[] arr, int low, int high) {
 
-			boolean isAsc = arr[start] < arr[end];
-			if (arr[mid] == target) {
-				return mid;
-			}
-
-			if (isAsc) {
-
-				if (arr[mid] > target) {
-					end = mid - 1;
-				} else {
-					start = mid + 1;
-				}
-			} else {
-				if (arr[mid] > target) {
-					start = mid + 1;
-				} else {
-					end = mid - 1;
-				}
-
+		for (int i = 0; i < arr.length; i++) {
+			int correctIndex = arr[i] - 1;
+			if (arr[correctIndex] != arr[i]) {
+				swap(arr, i, correctIndex);
 			}
 		}
-		return -1;
+
 	}
+
+	static void swap(int[] arr, int start, int end) {
+		int temp = arr[start];
+		arr[start] = arr[end];
+		arr[end] = temp;
+	}
+
 }
