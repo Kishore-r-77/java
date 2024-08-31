@@ -7,33 +7,25 @@ class Practice {
 
 		int[] arr = { 5, 4, 3, 2, 1 };
 
-		selection(arr);
+		insertionSort(arr);
 		System.out.println(Arrays.toString(arr));
 
 	}
 
-	static void selection(int[] arr) {
+	static void insertionSort(int[] arr) {
 
-		for (int i = 0; i < arr.length - i; i++) {
+		for (int i = 0; i < arr.length - 1; i++) {
 
-			int lastIndex = arr.length - 1 - i;
-			int maxIndex = getMaxIndex(arr, 0, lastIndex);
-			swap(arr, maxIndex, lastIndex);
-
-		}
-
-	}
-
-	static int getMaxIndex(int[] arr, int start, int end) {
-		int maxIndex = start;
-
-		for (int i = start; i <= end; i++) {
-			if (arr[maxIndex] < arr[i]) {
-				maxIndex = i;
+			for (int j = i + 1; j > 0; j--) {
+				if (arr[j] < arr[j - 1]) {
+					swap(arr, j, j - 1);
+				} else {
+					break;
+				}
 			}
+
 		}
 
-		return maxIndex;
 	}
 
 	static void swap(int[] arr, int start, int end) {
