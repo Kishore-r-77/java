@@ -1,60 +1,93 @@
 package practice;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+class Graph {
+
+	List<List<Integer>> adjList = new ArrayList<>();
+
+	Graph(int val) {
+		for (int i = 0; i < val; i++) {
+			adjList.add(new ArrayList<>());
+		}
+	}
+
+	void addEdge(int val1, int val2) {
+		adjList.get(val1).add(val2);
+		adjList.get(val2).add(val1);
+	}
+
+	void display() {
+		for (int i = 0; i < adjList.size(); i++) {
+			System.out.println("For vertice " + i + " the lists are");
+			for (int j = 0; j < adjList.get(i).size(); j++) {
+				System.out.println(adjList.get(i).get(j) + " ");
+			}
+		}
+	}
+
+	void bfs(int v) {
+		int V = adjList.size();
+		boolean visited[] = new boolean[V];
+
+		visited[v] = true;
+
+		Queue<Integer> queue = new LinkedList<>();
+
+		queue.add(v);
+
+		while (queue.size() != 0) {
+			Integer dequeue = queue.remove();
+
+			System.out.print(dequeue + " ");
+
+			for (int i = 0; i < adjList.get(dequeue).size(); i++) {
+				Integer av = adjList.get(dequeue).get(i);
+
+				if (!visited[av]) {
+					queue.add(av);
+					visited[av] = true;
+				}
+			}
+		}
+
+	}
+
+	void dfs(int v) {
+		int V = adjList.size();
+		boolean visited[] = new boolean[V];
+		dfs2(v, visited);
+	}
+
+	void dfs2(int v, boolean[] visited) {
+		visited[v] = true;
+
+		System.out.print(v + " ");
+
+		for (int i = 0; i < adjList.get(v).size(); i++) {
+
+			Integer av = adjList.get(v).get(i);
+			if (!visited[av]) {
+				dfs2(av, visited);
+			}
+		}
+	}
+}
 
 class Practice {
 	public static void main(String[] args) {
+		Graph graph = new Graph(5);
 
-		int[] arr = { 5, 4, 6, 8, 7, 3, 2, 9 };
-
-		mergeSort(arr, 0, arr.length);
-		System.out.println(Arrays.toString(arr));
-
-	}
-
-	static void mergeSort(int[] arr, int start, int end) {
-
-		if (end - start < 2) {
-			return;
-		}
-
-		int mid = start + (end - start) / 2;
-
-		mergeSort(arr, start, mid);
-		mergeSort(arr, mid, end);
-		merge(arr, start, mid, end);
-
-	}
-
-	static void merge(int[] arr, int start, int mid, int end) {
-		int joined[] = new int[end - start];
-
-		int i = start, j = mid, k = 0;
-
-		while (i < mid && j < end) {
-			if (arr[i] < arr[j]) {
-				joined[k++] = arr[i++];
-			} else {
-				joined[k++] = arr[j++];
-			}
-		}
-		while (i < mid) {
-			joined[k++] = arr[i++];
-		}
-		while (j < end) {
-			joined[k++] = arr[j++];
-		}
-
-		for (int index = 0; index < joined.length; index++) {
-			arr[start + index] = joined[index];
-		}
-
-	}
-
-	static void swap(int[] arr, int start, int end) {
-		int temp = arr[start];
-		arr[start] = arr[end];
-		arr[end] = temp;
+		graph.addEdge(0, 1);
+		graph.addEdge(2, 3);
+		graph.addEdge(1, 2);
+		graph.addEdge(3, 4);
+		graph.addEdge(0, 4);
+		graph.addEdge(1, 4);
+		graph.dfs(0);
 	}
 
 }
