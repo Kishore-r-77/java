@@ -1,50 +1,44 @@
 package practice;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: items =
-		// [["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]],
-		// ruleKey = "color", ruleValue = "silver"
-		// Output: 1
+		// Input: s = "is2 sentence4 This1 a3"
+		// Output: "This is a sentence"
 
-		List<List<String>> items = new ArrayList<>(
-				new ArrayList<>(List.of(List.of("phone", "blue", "pixel"), List.of("computer", "silver", "lenovo"),
-						List.of("phone", "gold", "iphone"))));
+		String s = "is2 sentence4 This1 a3";
 
-		System.out.println(countMatches(items, "color", "silver"));
+		System.out.println(sortSentence(s));
 
 	}
 
-	static public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
-		int count = 0;
-		if (ruleKey.equalsIgnoreCase("type")) {
-			for (int i = 0; i < items.size(); i++) {
-				String typeValue = items.get(i).get(0);
-				if (ruleValue.equals(typeValue)) {
-					count++;
-				}
-			}
-		} else if (ruleKey.equalsIgnoreCase("color")) {
-			for (int i = 0; i < items.size(); i++) {
-				String typeValue = items.get(i).get(1);
-				if (ruleValue.equals(typeValue)) {
-					count++;
-				}
-			}
-		} else {
-			for (int i = 0; i < items.size(); i++) {
-				String typeValue = items.get(i).get(2);
-				if (ruleValue.equals(typeValue)) {
-					count++;
-				}
-			}
+	static public String sortSentence(String s) {
+
+		String[] stringArray = s.split(" ");
+		int[] indexes = new int[stringArray.length];
+		String[] outputList = new String[stringArray.length];
+
+		String result = "";
+
+		for (int i = 0; i < indexes.length; i++) {
+			indexes[i] = Integer.parseInt(stringArray[i].charAt(stringArray[i].length() -
+					1) + "");
+			stringArray[i] = stringArray[i].substring(0, stringArray[i].length() - 1);
+
 		}
 
-		return count;
+		for (int i = 0; i < outputList.length; i++) {
+			outputList[indexes[i] - 1] = stringArray[i];
+		}
+		for (int i = 0; i < outputList.length; i++) {
+			result = result + outputList[i] + " ";
+		}
+
+		return result.trim();
 	}
 
 }
