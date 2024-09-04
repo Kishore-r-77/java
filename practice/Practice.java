@@ -1,44 +1,29 @@
 package practice;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: s = "is2 sentence4 This1 a3"
-		// Output: "This is a sentence"
+		// Input: word1 = ["ab", "c"], word2 = ["a", "bc"]
+		// Output: true
 
-		String s = "is2 sentence4 This1 a3";
+		String[] word1 = { "ab", "c" };
+		String[] word2 = { "a", "bc" };
 
-		System.out.println(sortSentence(s));
+		System.out.println(arrayStringsAreEqual(word1, word2));
 
 	}
 
-	static public String sortSentence(String s) {
+	static boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+		String result1 = "";
+		String result2 = "";
 
-		String[] stringArray = s.split(" ");
-		int[] indexes = new int[stringArray.length];
-		String[] outputList = new String[stringArray.length];
-
-		String result = "";
-
-		for (int i = 0; i < indexes.length; i++) {
-			indexes[i] = Integer.parseInt(stringArray[i].charAt(stringArray[i].length() -
-					1) + "");
-			stringArray[i] = stringArray[i].substring(0, stringArray[i].length() - 1);
-
+		for (String word : word1) {
+			result1 += word;
+		}
+		for (String word : word2) {
+			result2 += word;
 		}
 
-		for (int i = 0; i < outputList.length; i++) {
-			outputList[indexes[i] - 1] = stringArray[i];
-		}
-		for (int i = 0; i < outputList.length; i++) {
-			result = result + outputList[i] + " ";
-		}
-
-		return result.trim();
+		return result1.equals(result2);
 	}
-
 }
