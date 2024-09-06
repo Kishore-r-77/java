@@ -3,27 +3,36 @@ package practice;
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: word1 = ["ab", "c"], word2 = ["a", "bc"]
+		// Input: s = "book"
 		// Output: true
 
-		String[] word1 = { "ab", "c" };
-		String[] word2 = { "a", "bc" };
+		String s = "book";
 
-		System.out.println(arrayStringsAreEqual(word1, word2));
+		System.out.println(halvesAreAlike(s));
 
 	}
 
-	static boolean arrayStringsAreEqual(String[] word1, String[] word2) {
-		String result1 = "";
-		String result2 = "";
+	static public boolean halvesAreAlike(String s) {
+		int mid = s.length() / 2;
+		String firstHalf = s.substring(0, mid);
+		String secondHalf = s.substring(mid, s.length());
 
-		for (String word : word1) {
-			result1 += word;
-		}
-		for (String word : word2) {
-			result2 += word;
+		char[] firstHalfArray = firstHalf.toCharArray();
+		char[] secondHalfArray = secondHalf.toCharArray();
+
+		int a = 0;
+		int b = 0;
+		String vowels = "aeiouAEIOU";
+
+		for (int i = 0; i < firstHalfArray.length; i++) {
+			if (vowels.contains(firstHalfArray[i] + "")) {
+				a++;
+			}
+			if (vowels.contains(secondHalfArray[i] + "")) {
+				b++;
+			}
 		}
 
-		return result1.equals(result2);
+		return a == b;
 	}
 }
