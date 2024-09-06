@@ -3,36 +3,34 @@ package practice;
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: s = "book"
-		// Output: true
+		// Input: s = "10#11#12"
+		// Output: "jkab"
 
-		String s = "book";
+		String s = "10#11#12";
 
-		System.out.println(halvesAreAlike(s));
+		System.out.println(freqAlphabets(s));
+
+		System.out.println((char) ('a' + 0));
 
 	}
 
-	static public boolean halvesAreAlike(String s) {
-		int mid = s.length() / 2;
-		String firstHalf = s.substring(0, mid);
-		String secondHalf = s.substring(mid, s.length());
+	static public String freqAlphabets(String s) {
 
-		char[] firstHalfArray = firstHalf.toCharArray();
-		char[] secondHalfArray = secondHalf.toCharArray();
+		StringBuilder builder = new StringBuilder();
+		int i = 0;
+		while (i < s.length()) {
 
-		int a = 0;
-		int b = 0;
-		String vowels = "aeiouAEIOU";
-
-		for (int i = 0; i < firstHalfArray.length; i++) {
-			if (vowels.contains(firstHalfArray[i] + "")) {
-				a++;
-			}
-			if (vowels.contains(secondHalfArray[i] + "")) {
-				b++;
+			if (i + 2 < s.length() && s.charAt(i + 2) == '#') {
+				int num = Integer.parseInt(s.substring(i, i + 2));
+				builder.append((char) ('a' + num - 1));
+				i += 3;
+			} else {
+				int num = s.charAt(i) - '0';
+				builder.append((char) ('a' + num - 1));
+				i++;
 			}
 		}
 
-		return a == b;
+		return builder.toString();
 	}
 }
