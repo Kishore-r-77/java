@@ -1,37 +1,50 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: moves = "UD"
-		// Output: true
+		// Input: s = "Let's take LeetCode contest"
+		// Output: "s'teL ekat edoCteeL tsetnoc"
 
-		String moves = "UD";
+		String s = "Let's take LeetCode contest";
 
-		System.out.println(judgeCircle(moves));
+		System.out.println(reverseWords(s));
 
 	}
 
-	static public boolean judgeCircle(String moves) {
-		int leftCount = 0;
-		int rightCount = 0;
-		int upCount = 0;
-		int downcount = 0;
+	static public String reverseWords(String s) {
 
-		char[] directions = moves.toCharArray();
+		String output = "";
 
-		for (int i = 0; i < directions.length; i++) {
-			if (directions[i] == 'L') {
-				leftCount++;
-			} else if (directions[i] == 'R') {
-				rightCount++;
-			} else if (directions[i] == 'U') {
-				upCount++;
-			} else {
-				downcount++;
-			}
+		String[] stringArray = s.split(" ");
+
+		for (String word : stringArray) {
+			output += reverse(word) + " ";
 		}
 
-		return leftCount - rightCount == 0 && upCount - downcount == 0;
+		return output.trim();
+
+	}
+
+	static public String reverse(String s) {
+		char[] charArray = s.toCharArray();
+
+		int start = 0;
+		int end = s.length() - 1;
+		String output = "";
+
+		while (start <= end) {
+			char temp = charArray[start];
+			charArray[start] = charArray[end];
+			charArray[end] = temp;
+			start++;
+			end--;
+		}
+		for (int i = 0; i < charArray.length; i++) {
+			output += charArray[i];
+		}
+		return output;
 	}
 }
