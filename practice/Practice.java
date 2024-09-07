@@ -3,34 +3,40 @@ package practice;
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: s = "10#11#12"
-		// Output: "jkab"
+		String input1 = "10.1.05";
+		String input2 = "10.01.4";
 
-		String s = "10#11#12";
+		int result = compareVersions(input1, input2);
 
-		System.out.println(freqAlphabets(s));
-
-		System.out.println((char) ('a' + 0));
+		if (result > 0) {
+			System.out.println(input1 + " is greater than " + input2);
+		} else if (result < 0) {
+			System.out.println(input2 + " is greater than " + input1);
+		} else {
+			System.out.println(input1 + " is equal to " + input2);
+		}
 
 	}
 
-	static public String freqAlphabets(String s) {
+	static public int compareVersions(String version1, String version2) {
+		String[] v1Parts = version1.split("\\.");
+		String[] v2Parts = version2.split("\\.");
 
-		StringBuilder builder = new StringBuilder();
-		int i = 0;
-		while (i < s.length()) {
+		int maxlength = v1Parts.length < v2Parts.length ? v2Parts.length : v1Parts.length;
 
-			if (i + 2 < s.length() && s.charAt(i + 2) == '#') {
-				int num = Integer.parseInt(s.substring(i, i + 2));
-				builder.append((char) ('a' + num - 1));
-				i += 3;
-			} else {
-				int num = s.charAt(i) - '0';
-				builder.append((char) ('a' + num - 1));
-				i++;
+		for (int i = 0; i < maxlength; i++) {
+
+			int v1 = i < v1Parts.length ? Integer.parseInt(v1Parts[i]) : 0;
+			int v2 = i < v1Parts.length ? Integer.parseInt(v2Parts[i]) : 0;
+
+			if (v1 > v2) {
+				return 1;
+			} else if (v2 > v1) {
+				return -1;
 			}
+
 		}
 
-		return builder.toString();
+		return 0;
 	}
 }
