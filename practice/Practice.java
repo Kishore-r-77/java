@@ -3,40 +3,35 @@ package practice;
 class Practice {
 	public static void main(String[] args) {
 
-		String input1 = "10.1.05";
-		String input2 = "10.01.4";
+		// Input: moves = "UD"
+		// Output: true
 
-		int result = compareVersions(input1, input2);
+		String moves = "UD";
 
-		if (result > 0) {
-			System.out.println(input1 + " is greater than " + input2);
-		} else if (result < 0) {
-			System.out.println(input2 + " is greater than " + input1);
-		} else {
-			System.out.println(input1 + " is equal to " + input2);
-		}
+		System.out.println(judgeCircle(moves));
 
 	}
 
-	static public int compareVersions(String version1, String version2) {
-		String[] v1Parts = version1.split("\\.");
-		String[] v2Parts = version2.split("\\.");
+	static public boolean judgeCircle(String moves) {
+		int leftCount = 0;
+		int rightCount = 0;
+		int upCount = 0;
+		int downcount = 0;
 
-		int maxlength = v1Parts.length < v2Parts.length ? v2Parts.length : v1Parts.length;
+		char[] directions = moves.toCharArray();
 
-		for (int i = 0; i < maxlength; i++) {
-
-			int v1 = i < v1Parts.length ? Integer.parseInt(v1Parts[i]) : 0;
-			int v2 = i < v1Parts.length ? Integer.parseInt(v2Parts[i]) : 0;
-
-			if (v1 > v2) {
-				return 1;
-			} else if (v2 > v1) {
-				return -1;
+		for (int i = 0; i < directions.length; i++) {
+			if (directions[i] == 'L') {
+				leftCount++;
+			} else if (directions[i] == 'R') {
+				rightCount++;
+			} else if (directions[i] == 'U') {
+				upCount++;
+			} else {
+				downcount++;
 			}
-
 		}
 
-		return 0;
+		return leftCount - rightCount == 0 && upCount - downcount == 0;
 	}
 }
