@@ -3,23 +3,35 @@ package practice;
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: haystack = "sadbutsad", needle = "sad"
-		// Output: 0
+		// Input: s = "A man, a plan, a canal: Panama"
+		// Output: true
 
-		String haystack = "sadbutsad";
-		String needle = "sad";
+		String s = "A man, a plan, a canal: Panama";
 
-		System.out.println(strStr(haystack, needle));
+		System.out.println(isPalindrome(s));
 
 	}
 
-	static public int strStr(String haystack, String needle) {
+	static public boolean isPalindrome(String s) {
 
-		if (haystack.contains(needle)) {
-			return haystack.indexOf(needle);
+		int left = 0;
+		int right = s.length() - 1;
+
+		while (left < right) {
+			while (left < right && !Character.isLetterOrDigit(s.charAt(left))) {
+				left++;
+			}
+			while (left < right && !Character.isLetterOrDigit(s.charAt(right))) {
+				right--;
+			}
+			if (Character.toLowerCase(s.charAt(left)) != Character.toLowerCase(s.charAt(right))) {
+				return false;
+			}
+			left++;
+			right--;
 		}
 
-		return -1;
+		return true;
 	}
 
 }
