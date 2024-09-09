@@ -5,28 +5,34 @@ import java.util.Arrays;
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: nums = [1,2,3,4]
-		// Output: [1,3,6,10]
+		// Input: accounts = [[1,2,3],[3,2,1]]
+		// Output: 6
 
-		int[] nums = { 1, 2, 3, 4 };
+		int[][] nums = {
+				{ 1, 2, 3 },
+				{ 3, 2, 1 },
+		};
 
-		System.out.println(Arrays.toString(runningSum(nums)));
+		System.out.println(maximumWealth(nums));
 
 	}
 
-	static public int[] runningSum(int[] nums) {
+	static public int maximumWealth(int[][] accounts) {
 
-		int[] ans = new int[nums.length];
+		int max = 0;
 
-		int temp = 0;
+		for (int i = 0; i < accounts.length; i++) {
+			int sum = 0;
+			for (int j = 0; j < accounts[0].length; j++) {
+				sum += accounts[i][j];
+				if (sum > max) {
+					max = sum;
+				}
+			}
 
-		for (int i = 0; i < ans.length; i++) {
-			temp += nums[i];
-			ans[i] = temp;
 		}
 
-		return ans;
-
+		return max;
 	}
 
 }
