@@ -1,32 +1,36 @@
 package practice;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: nums = [1,2,3,1,1,3]
-		// Output: 4
+		// Input: nums = [8,1,2,2,3]
+		// Output: [4,0,1,1,3]
 
-		int[] nums = { 1, 2, 3, 1, 1, 3 };
+		int[] nums = { 8, 1, 2, 2, 3 };
 
-		System.out.println(numIdenticalPairs(nums));
+		System.out.println(Arrays.toString(smallerNumbersThanCurrent(nums)));
 
 	}
 
-	static public int numIdenticalPairs(int[] nums) {
-		int output = 0;
-		Map<Integer, Integer> map = new HashMap<>();
+	static public int[] smallerNumbersThanCurrent(int[] nums) {
 
-		for (int i = 0; i < nums.length; i++) {
-			if (map.containsKey(nums[i])) {
-				output += map.get(nums[i]);
+		int result[] = new int[nums.length];
+
+		for (int i = 0; i < result.length; i++) {
+			int count = 0;
+			for (int j = 0; j < result.length; j++) {
+				if (nums[i] > nums[j]) {
+					count++;
+				}
 			}
-			map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
+			result[i] = count;
 		}
 
-		return output;
+		return result;
 	}
 
 }
