@@ -1,44 +1,28 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: strs = ["flower","flow","flight"]
-		// Output: "fl"
+		// Input: nums = [0,2,1,5,3,4]
+		// Output: [0,1,2,4,5,3]
 
-		String[] strs = { "flower", "flow", "flight" };
+		int[] nums = { 0, 2, 1, 5, 3, 4 };
 
-		System.out.println(longestCommonPrefix(strs));
+		System.out.println(Arrays.toString(buildArray(nums)));
 
 	}
 
-	static public String longestCommonPrefix(String[] strs) {
-		if (strs == null || strs.length == 0) {
-			return "";
+	static public int[] buildArray(int[] nums) {
+
+		int[] ans = new int[nums.length];
+
+		for (int i = 0; i < ans.length; i++) {
+			ans[i] = nums[nums[i]];
 		}
 
-		// Step 1: Assume the first string is the longest common prefix
-		String prefix = strs[0];
-
-		// Step 2: Compare the prefix with each subsequent string
-		for (int i = 1; i < strs.length; i++) {
-			// Step 3: Shorten the prefix as long as it's not a prefix of the current string
-
-			while (strs[i].indexOf(prefix) != 0) {
-				// Remove the last character from the prefix
-
-				prefix = prefix.substring(0, prefix.length() - 1);
-
-				// If the prefix becomes empty, there's no common prefix
-				if (prefix.isEmpty()) {
-					return "";
-				}
-			}
-		}
-
-		// Step 4: Return the longest common prefix
-		return prefix;
-
+		return ans;
 	}
 
 }
