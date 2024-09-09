@@ -1,30 +1,40 @@
 package practice;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: nums = [2,5,1,3,4,7], n = 3
-		// Output: [2,3,5,4,1,7]
+		// Input: candies = [2,3,5,1,3], extraCandies = 3
+		// Output: [true,true,true,false,true]
 
-		int[] nums = {
-				2, 5, 1, 3, 4, 7
-		};
+		int[] candies = { 2, 3, 5, 1, 3 };
 
-		System.out.println(Arrays.toString(shuffle(nums, 3)));
+		System.out.println(kidsWithCandies(candies, 3));
 
 	}
 
-	static public int[] shuffle(int[] nums, int n) {
-		int[] output = new int[nums.length];
+	static public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+		List<Boolean> isMaxCandies = new ArrayList<>();
 
-		for (int i = 0; i < n; i++) {
-			output[2 * i] = nums[i];
-			output[2 * i + 1] = nums[i + n];
+		int maxCandies = 0;
+		for (int i = 0; i < candies.length; i++) {
+			if (maxCandies < candies[i]) {
+				maxCandies = candies[i];
+			}
 		}
 
-		return output;
+		for (int i = 0; i < candies.length; i++) {
+			if (extraCandies + candies[i] >= maxCandies) {
+				isMaxCandies.add(true);
+			} else {
+				isMaxCandies.add(false);
+			}
+		}
+
+		return isMaxCandies;
 	}
 
 }
