@@ -1,40 +1,32 @@
 package practice;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: candies = [2,3,5,1,3], extraCandies = 3
-		// Output: [true,true,true,false,true]
+		// Input: nums = [1,2,3,1,1,3]
+		// Output: 4
 
-		int[] candies = { 2, 3, 5, 1, 3 };
+		int[] nums = { 1, 2, 3, 1, 1, 3 };
 
-		System.out.println(kidsWithCandies(candies, 3));
+		System.out.println(numIdenticalPairs(nums));
 
 	}
 
-	static public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
-		List<Boolean> isMaxCandies = new ArrayList<>();
+	static public int numIdenticalPairs(int[] nums) {
+		int output = 0;
+		Map<Integer, Integer> map = new HashMap<>();
 
-		int maxCandies = 0;
-		for (int i = 0; i < candies.length; i++) {
-			if (maxCandies < candies[i]) {
-				maxCandies = candies[i];
+		for (int i = 0; i < nums.length; i++) {
+			if (map.containsKey(nums[i])) {
+				output += map.get(nums[i]);
 			}
+			map.put(nums[i], map.getOrDefault(nums[i], 0) + 1);
 		}
 
-		for (int i = 0; i < candies.length; i++) {
-			if (extraCandies + candies[i] >= maxCandies) {
-				isMaxCandies.add(true);
-			} else {
-				isMaxCandies.add(false);
-			}
-		}
-
-		return isMaxCandies;
+		return output;
 	}
 
 }
