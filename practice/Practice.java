@@ -5,21 +5,24 @@ import java.util.Arrays;
 class Practice {
 	public static void main(String[] args) {
 
-		// Input: nums = [1,2,1]
-		// Output: [1,2,1,1,2,1]
+		// Input: nums = [1,2,3,4]
+		// Output: [1,3,6,10]
 
-		int[] nums = { 1, 2, 1 };
+		int[] nums = { 1, 2, 3, 4 };
 
-		System.out.println(Arrays.toString(getConcatenation(nums)));
+		System.out.println(Arrays.toString(runningSum(nums)));
 
 	}
 
-	static public int[] getConcatenation(int[] nums) {
-		int[] ans = new int[nums.length * 2];
+	static public int[] runningSum(int[] nums) {
 
-		for (int i = 0; i < nums.length; i++) {
-			ans[i] = nums[i];
-			ans[i + nums.length] = nums[i];
+		int[] ans = new int[nums.length];
+
+		int temp = 0;
+
+		for (int i = 0; i < ans.length; i++) {
+			temp += nums[i];
+			ans[i] = temp;
 		}
 
 		return ans;
