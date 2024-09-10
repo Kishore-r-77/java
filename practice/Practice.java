@@ -5,28 +5,42 @@ import java.util.Arrays;
 class Practice {
     public static void main(String[] args) {
 
-        // Input: gain = [-5,1,5,0,-7]
-        // Output: 1
+        // Input: image = [[1,1,0],[1,0,1],[0,0,0]]
+        // Output: [[1,0,0],[0,1,0],[1,1,1]]
 
-        int[] gain = { -5, 1, 5, 0, -7 };
+        int[][] image = {
+                { 1, 1, 0 },
+                { 1, 0, 1 },
+                { 0, 0, 0 },
+        };
 
-        System.out.println(largestAltitude(gain));
+        System.out.println(Arrays.deepToString(flipAndInvertImage(image)));
 
     }
 
-    static public int largestAltitude(int[] gain) {
-        int altitude = 0;
+    static public int[][] flipAndInvertImage(int[][] image) {
 
-        int max = 0;
+        for (int i = 0; i < image.length; i++) {
+            swap(image[i], 0, image.length - 1);
 
-        for (int i = 0; i < gain.length - 1; i++) {
-            altitude += gain[i];
-            if (max < altitude) {
-                max = altitude;
+        }
+        for (int i = 0; i < image.length; i++) {
+            for (int j = 0; j < image.length; j++) {
+                image[i][j] = image[i][j] ^ 1;
             }
         }
 
-        return max;
+        return image;
+    }
+
+    static void swap(int[] arr, int start, int end) {
+        while (start < end) {
+            int temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
     }
 
 }
