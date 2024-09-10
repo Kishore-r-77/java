@@ -1,34 +1,32 @@
 package practice;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 class Practice {
     public static void main(String[] args) {
-        int[] nums = { 0, 1, 2, 3, 4 };
-        int[] index = { 0, 1, 2, 2, 1 };
-        int[] result = createTargetArray(nums, index);
 
-        // Input: nums = [0,1,2,3,4], index = [0,1,2,2,1]
-        // Output: [0,4,1,3,2]
+        // Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
+        // Output: true
 
-        System.out.println(Arrays.toString(result));
+        String sentence = "thequickbrownfoxjumpsoverthelazydog";
+
+        System.out.println(checkIfPangram(sentence));
 
     }
 
-    static public int[] createTargetArray(int[] nums, int[] index) {
-        List<Integer> resultArray = new ArrayList<>();
+    static public boolean checkIfPangram(String sentence) {
 
-        for (int i = 0; i < nums.length; i++) {
-            resultArray.add(index[i], nums[i]);
+        char[] alphabets = new char[26];
+        for (int i = 0; i < 26; i++) {
+            alphabets[i] = (char) ('a' + i);
+        }
+        for (char c : alphabets) {
+            if (!sentence.contains(c + "")) {
+                return false;
+            }
         }
 
-        int[] result = new int[nums.length];
-
-        for (int i = 0; i < result.length; i++) {
-            result[i] = resultArray.get(i);
-        }
-        return result;
+        return true;
     }
+
 }
