@@ -5,28 +5,28 @@ import java.util.Arrays;
 class Practice {
     public static void main(String[] args) {
 
-        // Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
-        // Output: true
+        // Input: gain = [-5,1,5,0,-7]
+        // Output: 1
 
-        String sentence = "thequickbrownfoxjumpsoverthelazydog";
+        int[] gain = { -5, 1, 5, 0, -7 };
 
-        System.out.println(checkIfPangram(sentence));
+        System.out.println(largestAltitude(gain));
 
     }
 
-    static public boolean checkIfPangram(String sentence) {
+    static public int largestAltitude(int[] gain) {
+        int altitude = 0;
 
-        char[] alphabets = new char[26];
-        for (int i = 0; i < 26; i++) {
-            alphabets[i] = (char) ('a' + i);
-        }
-        for (char c : alphabets) {
-            if (!sentence.contains(c + "")) {
-                return false;
+        int max = 0;
+
+        for (int i = 0; i < gain.length - 1; i++) {
+            altitude += gain[i];
+            if (max < altitude) {
+                max = altitude;
             }
         }
 
-        return true;
+        return max;
     }
 
 }
