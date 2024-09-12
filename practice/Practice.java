@@ -1,34 +1,33 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
     public static void main(String[] args) {
-        // Input: nums = [12,345,2,6,7896]
-        // Output: 2
+        // Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+        // Output: [[1,4,7],[2,5,8],[3,6,9]]
 
-        int[] nums = { 12, 345, 2, 6, 7896 };
+        int[][] nums = {
+                { 1, 2, 3 },
+                { 4, 5, 6 },
+                { 7, 8, 9 },
+        };
 
-        System.out.println(findNumbers(nums));
+        System.out.println(Arrays.deepToString(transpose(nums)));
 
     }
 
-    static public int findNumbers(int[] nums) {
-        int count = 0;
+    static public int[][] transpose(int[][] matrix) {
 
-        for (int i : nums) {
-            if (coundDigits(i) % 2 == 0) {
-                count++;
+        int result[][] = new int[matrix[0].length][matrix.length];
+
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                result[j][i] = matrix[i][j];
             }
         }
 
-        return count;
+        return result;
     }
 
-    static public int coundDigits(int num) {
-        int count = 0;
-        while (num / 10 != 0) {
-            num /= 10;
-            count++;
-        }
-        return count + 1;
-    }
 }
