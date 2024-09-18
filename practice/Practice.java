@@ -20,7 +20,7 @@ class Practice {
         for (int i = 0; i < result.length; i++) {
             result[indices[i]] = s.charAt(i);
         }
-
+        // created new String object
         return new String(result);
     }
 
