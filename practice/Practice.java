@@ -3,25 +3,35 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1528
-        // Input: s = "codeleet", indices = [4,5,6,7,0,2,1,3]
-        // Output: "leetcode"
+        // leetcode 1678
+        // Input: command = "G()(al)"
+        // Output: "Goal"
 
-        String address = "codeleet";
-        int[] indices = { 4, 5, 6, 7, 0, 2, 1, 3 };
+        String command = "G()(al)";
 
-        System.out.println(restoreString(address, indices));
+        System.out.println(interpret(command));
 
     }
 
-    static public String restoreString(String s, int[] indices) {
-        char[] result = new char[s.length()];
+    static public String interpret(String command) {
+        StringBuilder sb = new StringBuilder();
 
-        for (int i = 0; i < result.length; i++) {
-            result[indices[i]] = s.charAt(i);
+        int i = 0;
+        while (i < command.length()) {
+            if (command.charAt(i) == '(' && command.charAt(i + 1) == ')') {
+                sb.append('o');
+                i += 2;
+            } else if (command.charAt(i) == '(' && command.charAt(i + 1) == 'a' && command.charAt(i + 2) == 'l'
+                    && command.charAt(i + 3) == ')') {
+                sb.append("al");
+                i += 4;
+            } else {
+                sb.append(command.charAt(i));
+                i++;
+            }
         }
-        // created new String object
-        return new String(result);
+        return sb.toString();
+
     }
 
 }
