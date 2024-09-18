@@ -2,28 +2,26 @@ package practice;
 
 class Practice {
     public static void main(String[] args) {
-        // Input: address = "1.1.1.1"
-        // Output: "1[.]1[.]1[.]1"
 
-        String address = "1.1.1.1";
+        // leetcode 1528
+        // Input: s = "codeleet", indices = [4,5,6,7,0,2,1,3]
+        // Output: "leetcode"
 
-        System.out.println(defangIPaddr(address));
+        String address = "codeleet";
+        int[] indices = { 4, 5, 6, 7, 0, 2, 1, 3 };
+
+        System.out.println(restoreString(address, indices));
+
     }
 
-    static public String defangIPaddr(String address) {
+    static public String restoreString(String s, int[] indices) {
+        char[] result = new char[s.length()];
 
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < address.length(); i++) {
-            if (address.charAt(i) == '.') {
-                sb.append("[.]");
-            } else {
-                sb.append(address.charAt(i));
-            }
+        for (int i = 0; i < result.length; i++) {
+            result[indices[i]] = s.charAt(i);
         }
 
-        return sb.toString();
-
+        return new String(result);
     }
 
 }
