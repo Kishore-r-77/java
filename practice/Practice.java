@@ -1,47 +1,34 @@
 package practice;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1859
-        // Input: s = "is2 sentence4 This1 a3"
-        // Output: "This is a sentence"
+        // leetcode 1662
+        // Input: word1 = ["ab", "c"], word2 = ["a", "bc"]
+        // Output: true
 
-        String s = "is2 sentence4 This1 a3";
+        String[] word1 = { "abc", "d", "defg" };
+        String[] word2 = { "abcddefg" };
 
-        System.out.println(sortSentence(s));
+        System.out.println(arrayStringsAreEqual(word1, word2));
 
     }
 
-    static public String sortSentence(String s) {
-        String[] splitString = s.split(" ");
+    static public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
 
-        int[] order = new int[splitString.length];
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
 
-        String[] result = new String[splitString.length];
-
-        StringBuilder sb = new StringBuilder();
-
-        for (int i = 0; i < order.length; i++) {
-            order[i] = Integer.parseInt(splitString[i].charAt(splitString[i].length() - 1) + "") - 1;
+        for (int i = 0; i < word1.length; i++) {
+            sb1.append(word1[i]);
         }
 
-        for (int i = 0; i < order.length; i++) {
-            result[order[i]] = splitString[i].substring(0, splitString[i].length() - 1);
+        for (int i = 0; i < word2.length; i++) {
+            sb2.append(word2[i]);
+
         }
 
-        ;
-
-        for (int i = 0; i < result.length; i++) {
-            sb.append(result[i] + " ");
-        }
-
-        return sb.toString().trim();
-
+        return sb1.toString().equals(sb2.toString());
     }
 
 }
