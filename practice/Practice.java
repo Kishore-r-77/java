@@ -3,32 +3,38 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1662
-        // Input: word1 = ["ab", "c"], word2 = ["a", "bc"]
+        // leetcode 1704
+        // Input: s = "book"
         // Output: true
 
-        String[] word1 = { "abc", "d", "defg" };
-        String[] word2 = { "abcddefg" };
+        String s = "book";
 
-        System.out.println(arrayStringsAreEqual(word1, word2));
+        System.out.println(halvesAreAlike(s));
 
     }
 
-    static public boolean arrayStringsAreEqual(String[] word1, String[] word2) {
+    static public boolean halvesAreAlike(String s) {
 
-        StringBuilder sb1 = new StringBuilder();
-        StringBuilder sb2 = new StringBuilder();
+        String vowels = "aeiou";
 
-        for (int i = 0; i < word1.length; i++) {
-            sb1.append(word1[i]);
+        int mid = s.length() / 2;
+
+        String firstHalf = s.substring(0, mid);
+        String secondHalf = s.substring(mid, s.length());
+
+        int count1 = 0;
+        int count2 = 0;
+
+        for (int i = 0; i < firstHalf.length(); i++) {
+            if (vowels.contains(firstHalf.charAt(i) + "")) {
+                count1++;
+            }
+            if (vowels.contains(secondHalf.charAt(i) + "")) {
+                count2++;
+            }
         }
 
-        for (int i = 0; i < word2.length; i++) {
-            sb2.append(word2[i]);
-
-        }
-
-        return sb1.toString().equals(sb2.toString());
+        return count1 == count2;
     }
 
 }
