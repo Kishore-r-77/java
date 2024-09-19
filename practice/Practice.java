@@ -1,52 +1,47 @@
 package practice;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1773
-        // Input: items =
-        // [["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]],
-        // ruleKey = "color", ruleValue = "silver"
-        // Output: 1
+        // leetcode 1859
+        // Input: s = "is2 sentence4 This1 a3"
+        // Output: "This is a sentence"
 
-        // Input: items =
-        // [["phone","blue","pixel"],["computer","silver","phone"],["phone","gold","iphone"]],
-        // ruleKey = "type", ruleValue = "phone"
-        // Output: 2
+        String s = "is2 sentence4 This1 a3";
 
-        List<List<String>> items = List.of(List.of("phone", "blue", "pixel"), List.of("computer", "silver", "lenovo"),
-                List.of("phone", "gold", "iphone"));
-
-        List<List<String>> items2 = List.of(List.of("phone", "blue", "pixel"), List.of("computer", "silver", "phone"),
-                List.of("phone", "gold", "iphone"));
-
-        System.out.println(countMatches(items2, "type", "phone"));
+        System.out.println(sortSentence(s));
 
     }
 
-    static public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+    static public String sortSentence(String s) {
+        String[] splitString = s.split(" ");
 
-        int count = 0;
+        int[] order = new int[splitString.length];
 
-        for (int i = 0; i < items.size(); i++) {
-            if (ruleKey.equals("type")) {
-                if (ruleValue.equals(items.get(i).get(0))) {
-                    count++;
-                }
-            } else if (ruleKey.equals("color")) {
-                if (ruleValue.equals(items.get(i).get(1))) {
-                    count++;
-                }
-            } else if (ruleKey.equals("name")) {
-                if (ruleValue.equals(items.get(i).get(2))) {
-                    count++;
-                }
-            }
+        String[] result = new String[splitString.length];
+
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < order.length; i++) {
+            order[i] = Integer.parseInt(splitString[i].charAt(splitString[i].length() - 1) + "") - 1;
         }
 
-        return count;
+        for (int i = 0; i < order.length; i++) {
+            result[order[i]] = splitString[i].substring(0, splitString[i].length() - 1);
+        }
+
+        ;
+
+        for (int i = 0; i < result.length; i++) {
+            sb.append(result[i] + " ");
+        }
+
+        return sb.toString().trim();
+
     }
 
 }
