@@ -3,38 +3,33 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1309
-        // Input: s = "10#11#12"
-        // Output: "jkab"
-        // Explanation: "j" -> "10#" , "k" -> "11#" , "a" -> "1" , "b" -> "2".
+        // leetcode 1967
+        // Input: patterns = ["a","abc","bc","d"], word = "abc"
+        // Output: 3
+        // Explanation:
+        // - "a" appears as a substring in "abc".
+        // - "abc" appears as a substring in "abc".
+        // - "bc" appears as a substring in "abc".
+        // - "d" does not appear as a substring in "abc".
+        // 3 of the strings in patterns appear as a substring in word.
 
-        String s = "10#11#12";
+        String[] patterns = { "a", "abc", "bc", "d" };
+        String word = "abc";
 
-        System.out.println(freqAlphabets(s));
+        System.out.println(numOfStrings(patterns, word));
 
     }
 
-    static public String freqAlphabets(String s) {
+    static public int numOfStrings(String[] patterns, String word) {
+        int count = 0;
 
-        StringBuilder sb = new StringBuilder();
-
-        int i = 0;
-
-        while (i < s.length()) {
-
-            if (i + 2 < s.length() && s.charAt(i + 2) == '#') {
-                int num = Integer.parseInt(s.substring(i, i + 2));
-                sb.append((char) ('a' + num - 1));
-                i += 3;
-            } else {
-                int num = s.charAt(i) - '0';
-                sb.append((char) ('a' + num - 1));
-                i++;
+        for (String items : patterns) {
+            if (word.contains(items)) {
+                count++;
             }
-
         }
 
-        return sb.toString();
+        return count;
     }
 
 }
