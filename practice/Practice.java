@@ -3,38 +3,38 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1704
-        // Input: s = "book"
-        // Output: true
+        // leetcode 1309
+        // Input: s = "10#11#12"
+        // Output: "jkab"
+        // Explanation: "j" -> "10#" , "k" -> "11#" , "a" -> "1" , "b" -> "2".
 
-        String s = "book";
+        String s = "10#11#12";
 
-        System.out.println(halvesAreAlike(s));
+        System.out.println(freqAlphabets(s));
 
     }
 
-    static public boolean halvesAreAlike(String s) {
+    static public String freqAlphabets(String s) {
 
-        String vowels = "aeiou";
+        StringBuilder sb = new StringBuilder();
 
-        int mid = s.length() / 2;
+        int i = 0;
 
-        String firstHalf = s.substring(0, mid);
-        String secondHalf = s.substring(mid, s.length());
+        while (i < s.length()) {
 
-        int count1 = 0;
-        int count2 = 0;
-
-        for (int i = 0; i < firstHalf.length(); i++) {
-            if (vowels.contains(firstHalf.charAt(i) + "")) {
-                count1++;
+            if (i + 2 < s.length() && s.charAt(i + 2) == '#') {
+                int num = Integer.parseInt(s.substring(i, i + 2));
+                sb.append((char) ('a' + num - 1));
+                i += 3;
+            } else {
+                int num = s.charAt(i) - '0';
+                sb.append((char) ('a' + num - 1));
+                i++;
             }
-            if (vowels.contains(secondHalf.charAt(i) + "")) {
-                count2++;
-            }
+
         }
 
-        return count1 == count2;
+        return sb.toString();
     }
 
 }
