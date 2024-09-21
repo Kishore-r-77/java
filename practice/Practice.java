@@ -3,33 +3,37 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1967
-        // Input: patterns = ["a","abc","bc","d"], word = "abc"
-        // Output: 3
-        // Explanation:
-        // - "a" appears as a substring in "abc".
-        // - "abc" appears as a substring in "abc".
-        // - "bc" appears as a substring in "abc".
-        // - "d" does not appear as a substring in "abc".
-        // 3 of the strings in patterns appear as a substring in word.
+        // leetcode 657
+        // Input: moves = "UD"
+        // Output: true
+        // Explanation: The robot moves up once, and then down once. All moves have the
+        // same magnitude, so it ended up at the origin where it started. Therefore, we
+        // return true.
 
-        String[] patterns = { "a", "abc", "bc", "d" };
-        String word = "abc";
+        String moves = "UD";
 
-        System.out.println(numOfStrings(patterns, word));
+        System.out.println(judgeCircle(moves));
 
     }
 
-    static public int numOfStrings(String[] patterns, String word) {
-        int count = 0;
+    static public boolean judgeCircle(String moves) {
 
-        for (String items : patterns) {
-            if (word.contains(items)) {
-                count++;
+        int vertical = 0;
+        int horizontal = 0;
+        for (int i = 0; i < moves.length(); i++) {
+
+            if (moves.charAt(i) == 'U') {
+                vertical += 1;
+
+            } else if (moves.charAt(i) == 'D') {
+                vertical -= 1;
+            } else if (moves.charAt(i) == 'L') {
+                horizontal -= 1;
+            } else {
+                horizontal += 1;
             }
         }
-
-        return count;
+        return vertical == 0 && horizontal == 0;
     }
 
 }
