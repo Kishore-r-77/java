@@ -3,37 +3,45 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 657
-        // Input: moves = "UD"
-        // Output: true
-        // Explanation: The robot moves up once, and then down once. All moves have the
-        // same magnitude, so it ended up at the origin where it started. Therefore, we
-        // return true.
+        // leetcode 557
 
-        String moves = "UD";
+        // Input: s = "Let's take LeetCode contest"
+        // Output: "s'teL ekat edoCteeL tsetnoc"
 
-        System.out.println(judgeCircle(moves));
+        String s = "Let's take LeetCode contest";
+
+        System.out.println(reverseWords(s));
 
     }
 
-    static public boolean judgeCircle(String moves) {
+    static public String reverseWords(String s) {
 
-        int vertical = 0;
-        int horizontal = 0;
-        for (int i = 0; i < moves.length(); i++) {
+        StringBuilder sb = new StringBuilder();
 
-            if (moves.charAt(i) == 'U') {
-                vertical += 1;
+        String[] stringArray = s.split(" ");
 
-            } else if (moves.charAt(i) == 'D') {
-                vertical -= 1;
-            } else if (moves.charAt(i) == 'L') {
-                horizontal -= 1;
-            } else {
-                horizontal += 1;
-            }
+        for (int i = 0; i < stringArray.length; i++) {
+            sb.append(swap(stringArray[i]) + " ");
         }
-        return vertical == 0 && horizontal == 0;
+
+        return sb.toString().trim();
+
     }
 
+    static String swap(String word) {
+        char[] charArray = word.toCharArray();
+        int start = 0;
+        int end = charArray.length - 1;
+
+        while (start < end) {
+            char temp = charArray[start];
+            charArray[start] = charArray[end];
+            charArray[end] = temp;
+            start++;
+            end--;
+        }
+
+        return new String(charArray);
+
+    }
 }
