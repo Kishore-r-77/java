@@ -3,45 +3,28 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 557
+        // leetcode 168
 
-        // Input: s = "Let's take LeetCode contest"
-        // Output: "s'teL ekat edoCteeL tsetnoc"
+        // Input: columnNumber = 1
+        // Output: "A"
 
-        String s = "Let's take LeetCode contest";
-
-        System.out.println(reverseWords(s));
+        System.out.println(convertToTitle(28));
 
     }
 
-    static public String reverseWords(String s) {
+    static public String convertToTitle(int columnNumber) {
 
         StringBuilder sb = new StringBuilder();
 
-        String[] stringArray = s.split(" ");
-
-        for (int i = 0; i < stringArray.length; i++) {
-            sb.append(swap(stringArray[i]) + " ");
+        while (columnNumber > 0) {
+            columnNumber--;
+            int remainder = (columnNumber) % 26;
+            char value = (char) ('A' + remainder);
+            sb.append(value);
+            columnNumber /= 26;
         }
 
-        return sb.toString().trim();
-
+        return sb.reverse().toString();
     }
 
-    static String swap(String word) {
-        char[] charArray = word.toCharArray();
-        int start = 0;
-        int end = charArray.length - 1;
-
-        while (start < end) {
-            char temp = charArray[start];
-            charArray[start] = charArray[end];
-            charArray[end] = temp;
-            start++;
-            end--;
-        }
-
-        return new String(charArray);
-
-    }
 }
