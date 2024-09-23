@@ -3,28 +3,25 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 168
+        // leetcode 28
 
-        // Input: columnNumber = 1
-        // Output: "A"
+        // Input: haystack = "sadbutsad", needle = "sad"
+        // Output: 0
 
-        System.out.println(convertToTitle(28));
+        String haystack = "sadbutsad";
+        String needle = "sad";
+
+        System.out.println(strStr(haystack, needle));
 
     }
 
-    static public String convertToTitle(int columnNumber) {
+    static public int strStr(String haystack, String needle) {
 
-        StringBuilder sb = new StringBuilder();
-
-        while (columnNumber > 0) {
-            columnNumber--;
-            int remainder = (columnNumber) % 26;
-            char value = (char) ('A' + remainder);
-            sb.append(value);
-            columnNumber /= 26;
+        if (haystack.contains(needle)) {
+            return haystack.indexOf(needle);
         }
 
-        return sb.reverse().toString();
+        return -1;
     }
 
 }
