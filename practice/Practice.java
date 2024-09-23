@@ -3,25 +3,37 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 28
+        // leetcode 925
 
-        // Input: haystack = "sadbutsad", needle = "sad"
-        // Output: 0
+        // Input: name = "alex", typed = "aaleex"
+        // Output: true
 
-        String haystack = "sadbutsad";
-        String needle = "sad";
+        String name = "alex";
+        String typed = "aaleex";
 
-        System.out.println(strStr(haystack, needle));
+        System.out.println(isLongPressedName(name, typed));
 
     }
 
-    static public int strStr(String haystack, String needle) {
+    static public boolean isLongPressedName(String name, String typed) {
 
-        if (haystack.contains(needle)) {
-            return haystack.indexOf(needle);
+        if (name.length() > typed.length()) {
+            return false;
         }
 
-        return -1;
+        int i = 0, j = 0;
+
+        while (j < typed.length()) {
+            if (i < name.length() && name.charAt(i) == typed.charAt(j)) {
+                i++;
+            } else if (j == 0 || typed.charAt(j) != typed.charAt(j - 1)) {
+                return false;
+            }
+            j++;
+        }
+
+        return i == name.length();
+
     }
 
 }
