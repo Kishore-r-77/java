@@ -1,39 +1,56 @@
 package practice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 925
+        // leetcode 125
 
-        // Input: name = "alex", typed = "aaleex"
+        // Input: s = "A man, a plan, a canal: Panama"
         // Output: true
 
-        String name = "alex";
-        String typed = "aaleex";
+        String s = "race a car";
 
-        System.out.println(isLongPressedName(name, typed));
+        System.out.println(isPalindrome(s));
 
     }
 
-    static public boolean isLongPressedName(String name, String typed) {
+    static public boolean isPalindrome(String s) {
 
-        if (name.length() > typed.length()) {
-            return false;
+        List<Character> characters = new ArrayList<>();
+        char[] charArray = s.toCharArray();
+
+        for (int i = 0; i < charArray.length; i++) {
+            if (Character.isLetterOrDigit(charArray[i])) {
+                characters.add(charArray[i]);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+
+        for (char c : characters) {
+            sb.append(c);
         }
 
-        int i = 0, j = 0;
+        return checkPalindrome(sb.toString().toLowerCase());
 
-        while (j < typed.length()) {
-            if (i < name.length() && name.charAt(i) == typed.charAt(j)) {
-                i++;
-            } else if (j == 0 || typed.charAt(j) != typed.charAt(j - 1)) {
+    }
+
+    static boolean checkPalindrome(String s) {
+        char[] charArray = s.toCharArray();
+        int start = 0;
+        int end = charArray.length - 1;
+
+        while (start < end) {
+            if (charArray[start] == charArray[end]) {
+                start++;
+                end--;
+            } else {
                 return false;
             }
-            j++;
         }
-
-        return i == name.length();
-
+        return true;
     }
 
 }
