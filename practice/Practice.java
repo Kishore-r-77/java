@@ -3,35 +3,28 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 14
+        // leetcode 1668
 
-        // Input: strs = ["flower","flow","flight"]
-        // Output: "fl"
+        // Input: sequence = "ababc", word = "ab"
+        // Output: 2
+        // Explanation: "abab" is a substring in "ababc".
 
-        String[] strs = { "flower", "flow", "flight" };
+        String sequence = "ababc";
+        String word = "ab";
 
-        System.out.println(longestCommonPrefix(strs));
+        System.out.println(maxRepeating(sequence, word));
 
     }
 
-    static public String longestCommonPrefix(String[] strs) {
+    static public int maxRepeating(String sequence, String word) {
+        int count = 0;
 
-        if (strs.length == 0 || strs == null) {
-            return "";
+        StringBuilder sb = new StringBuilder();
+
+        while (sequence.contains(sb.append(word))) {
+            count++;
         }
 
-        String prefix = strs[0];
-
-        for (int i = 0; i < strs.length; i++) {
-            while (strs[i].indexOf(prefix) != 0) {
-                prefix = prefix.substring(0, prefix.length() - 1);
-
-                if (prefix.isEmpty()) {
-                    return "";
-                }
-            }
-        }
-
-        return prefix;
+        return count;
     }
 }
