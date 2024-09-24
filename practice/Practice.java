@@ -3,54 +3,35 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 680
+        // leetcode 14
 
-        // Input: s = "cxcaac"
-        // Output: false
+        // Input: strs = ["flower","flow","flight"]
+        // Output: "fl"
 
-        String s = "cxcaac";
+        String[] strs = { "flower", "flow", "flight" };
 
-        System.out.println(validPalindrome(s));
+        System.out.println(longestCommonPrefix(strs));
 
     }
 
-    static public boolean validPalindrome(String s) {
+    static public String longestCommonPrefix(String[] strs) {
 
-        int start = 0;
-        int end = s.length() - 1;
-        if (checkPalindrome(start, end, s)) {
-            return true;
+        if (strs.length == 0 || strs == null) {
+            return "";
         }
 
-        while (start < end) {
-            if (s.charAt(start) != s.charAt(end)) {
-                if (checkPalindrome(start + 1, end, s)) {
-                    return true;
-                } else if (checkPalindrome(start, end - 1, s)) {
-                    return true;
-                } else {
-                    return false;
+        String prefix = strs[0];
+
+        for (int i = 0; i < strs.length; i++) {
+            while (strs[i].indexOf(prefix) != 0) {
+                prefix = prefix.substring(0, prefix.length() - 1);
+
+                if (prefix.isEmpty()) {
+                    return "";
                 }
-
-            }
-            start++;
-            end--;
-        }
-
-        return true;
-    }
-
-    static public boolean checkPalindrome(int start, int end, String s) {
-
-        while (start < end) {
-            if (s.charAt(start) == s.charAt(end)) {
-                start++;
-                end--;
-            } else {
-                return false;
             }
         }
-        return true;
-    }
 
+        return prefix;
+    }
 }
