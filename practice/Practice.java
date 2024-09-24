@@ -1,49 +1,49 @@
 package practice;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 125
+        // leetcode 680
 
-        // Input: s = "A man, a plan, a canal: Panama"
-        // Output: true
+        // Input: s = "cxcaac"
+        // Output: false
 
-        String s = "race a car";
+        String s = "cxcaac";
 
-        System.out.println(isPalindrome(s));
-
-    }
-
-    static public boolean isPalindrome(String s) {
-
-        List<Character> characters = new ArrayList<>();
-        char[] charArray = s.toCharArray();
-
-        for (int i = 0; i < charArray.length; i++) {
-            if (Character.isLetterOrDigit(charArray[i])) {
-                characters.add(charArray[i]);
-            }
-        }
-        StringBuilder sb = new StringBuilder();
-
-        for (char c : characters) {
-            sb.append(c);
-        }
-
-        return checkPalindrome(sb.toString().toLowerCase());
+        System.out.println(validPalindrome(s));
 
     }
 
-    static boolean checkPalindrome(String s) {
-        char[] charArray = s.toCharArray();
+    static public boolean validPalindrome(String s) {
+
         int start = 0;
-        int end = charArray.length - 1;
+        int end = s.length() - 1;
+        if (checkPalindrome(start, end, s)) {
+            return true;
+        }
 
         while (start < end) {
-            if (charArray[start] == charArray[end]) {
+            if (s.charAt(start) != s.charAt(end)) {
+                if (checkPalindrome(start + 1, end, s)) {
+                    return true;
+                } else if (checkPalindrome(start, end - 1, s)) {
+                    return true;
+                } else {
+                    return false;
+                }
+
+            }
+            start++;
+            end--;
+        }
+
+        return true;
+    }
+
+    static public boolean checkPalindrome(int start, int end, String s) {
+
+        while (start < end) {
+            if (s.charAt(start) == s.charAt(end)) {
                 start++;
                 end--;
             } else {
