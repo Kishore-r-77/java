@@ -1,50 +1,47 @@
 package practice;
 
-import java.util.ArrayList;
-import java.util.List;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1768
+        // leetcode 2000
 
-        // Input: word1 = "abc", word2 = "pqr"
-        // Output: "apbqcr"
+        // Input: word = "abcdefd", ch = "d"
+        // Output: "dcbaefd"
 
-        String word1 = "ab";
-        String word2 = "pqrs";
+        String word = "abcdefd";
+        char ch = 'd';
 
-        System.out.println(mergeAlternately(word1, word2));
+        System.out.println(reversePrefix(word, ch));
 
     }
 
-    static public String mergeAlternately(String word1, String word2) {
+    static public String reversePrefix(String word, char ch) {
 
-        char[] word1Array = word1.toCharArray();
-        char[] word2Array = word2.toCharArray();
-        List<Character> resultArray = new ArrayList<>();
+        char[] wordArray = word.toCharArray();
 
-        int i = 0, j = 0;
-
-        while (i < word1Array.length && j < word2Array.length) {
-
-            resultArray.add(word1Array[i++]);
-            resultArray.add(word2Array[j++]);
+        int end = word.indexOf(ch);
+        if (end == -1) {
+            return word;
         }
+        swap(0, word.indexOf(ch), wordArray);
 
-        while (i < word1Array.length) {
-            resultArray.add(word1Array[i++]);
-        }
-        while (j < word2Array.length) {
-            resultArray.add(word2Array[j++]);
-        }
         StringBuilder sb = new StringBuilder();
-
-        for (char c : resultArray) {
+        for (char c : wordArray) {
             sb.append(c);
         }
-
         return sb.toString();
 
+    }
+
+    static void swap(int start, int end, char[] arr) {
+
+        while (start < end) {
+
+            char temp = arr[start];
+            arr[start] = arr[end];
+            arr[end] = temp;
+            start++;
+            end--;
+        }
     }
 }
