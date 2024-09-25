@@ -1,47 +1,54 @@
 package practice;
 
+import java.util.HashMap;
+import java.util.Map;
+
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 2000
+        // leetcode 13
 
-        // Input: word = "abcdefd", ch = "d"
-        // Output: "dcbaefd"
+        // Input: s = "III"
+        // Output: 3
+        // Explanation: III = 3.
 
-        String word = "abcdefd";
-        char ch = 'd';
+        // Symbol Value
+        // I 1
+        // V 5
+        // X 10
+        // L 50
+        // C 100
+        // D 500
+        // M 1000
 
-        System.out.println(reversePrefix(word, ch));
+        String s = "III";
 
-    }
-
-    static public String reversePrefix(String word, char ch) {
-
-        char[] wordArray = word.toCharArray();
-
-        int end = word.indexOf(ch);
-        if (end == -1) {
-            return word;
-        }
-        swap(0, word.indexOf(ch), wordArray);
-
-        StringBuilder sb = new StringBuilder();
-        for (char c : wordArray) {
-            sb.append(c);
-        }
-        return sb.toString();
+        System.out.println(romanToInt(s));
 
     }
 
-    static void swap(int start, int end, char[] arr) {
+    static public int romanToInt(String s) {
 
-        while (start < end) {
+        Map<Character, Integer> map = Map.of(
+                'I', 1,
+                'V', 5,
+                'X', 10,
+                'L', 50,
+                'C', 100,
+                'D', 500,
+                'M', 1000);
 
-            char temp = arr[start];
-            arr[start] = arr[end];
-            arr[end] = temp;
-            start++;
-            end--;
+        int result = map.get(s.charAt(s.length() - 1));
+
+        for (int i = s.length() - 2; i >= 0; i--) {
+            if (map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
+                result -= map.get(s.charAt(i));
+            } else {
+                result += map.get(s.charAt(i));
+            }
         }
+
+        return result;
+
     }
 }
