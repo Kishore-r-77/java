@@ -1,30 +1,50 @@
 package practice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1668
+        // leetcode 1768
 
-        // Input: sequence = "ababc", word = "ab"
-        // Output: 2
-        // Explanation: "abab" is a substring in "ababc".
+        // Input: word1 = "abc", word2 = "pqr"
+        // Output: "apbqcr"
 
-        String sequence = "ababc";
-        String word = "ab";
+        String word1 = "ab";
+        String word2 = "pqrs";
 
-        System.out.println(maxRepeating(sequence, word));
+        System.out.println(mergeAlternately(word1, word2));
 
     }
 
-    static public int maxRepeating(String sequence, String word) {
-        int count = 0;
+    static public String mergeAlternately(String word1, String word2) {
 
-        StringBuilder sb = new StringBuilder();
+        char[] word1Array = word1.toCharArray();
+        char[] word2Array = word2.toCharArray();
+        List<Character> resultArray = new ArrayList<>();
 
-        while (sequence.contains(sb.append(word))) {
-            count++;
+        int i = 0, j = 0;
+
+        while (i < word1Array.length && j < word2Array.length) {
+
+            resultArray.add(word1Array[i++]);
+            resultArray.add(word2Array[j++]);
         }
 
-        return count;
+        while (i < word1Array.length) {
+            resultArray.add(word1Array[i++]);
+        }
+        while (j < word2Array.length) {
+            resultArray.add(word2Array[j++]);
+        }
+        StringBuilder sb = new StringBuilder();
+
+        for (char c : resultArray) {
+            sb.append(c);
+        }
+
+        return sb.toString();
+
     }
 }
