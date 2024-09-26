@@ -2,53 +2,45 @@ package practice;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Stack;
 
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 13
+        // leetcode 20
 
-        // Input: s = "III"
-        // Output: 3
-        // Explanation: III = 3.
+        // Input: s = "()"
 
-        // Symbol Value
-        // I 1
-        // V 5
-        // X 10
-        // L 50
-        // C 100
-        // D 500
-        // M 1000
+        // Output: true
 
-        String s = "III";
+        String s = "([])";
 
-        System.out.println(romanToInt(s));
+        System.out.println(isValid(s));
 
     }
 
-    static public int romanToInt(String s) {
+    static public boolean isValid(String s) {
 
-        Map<Character, Integer> map = Map.of(
-                'I', 1,
-                'V', 5,
-                'X', 10,
-                'L', 50,
-                'C', 100,
-                'D', 500,
-                'M', 1000);
+        char[] charArray = s.toCharArray();
 
-        int result = map.get(s.charAt(s.length() - 1));
+        Stack<Character> stack = new Stack<>();
 
-        for (int i = s.length() - 2; i >= 0; i--) {
-            if (map.get(s.charAt(i)) < map.get(s.charAt(i + 1))) {
-                result -= map.get(s.charAt(i));
+        for (int i = 0; i < charArray.length; i++) {
+            if (charArray[i] == '(' || charArray[i] == '[' || charArray[i] == '{') {
+                stack.push(charArray[i]);
             } else {
-                result += map.get(s.charAt(i));
+                if (stack.isEmpty()) {
+                    return false;
+                }
+                char top = stack.pop();
+                if (charArray[i] == ')' && top != '(' || charArray[i] == ']' && top != '['
+                        || charArray[i] == '{' && top != '}') {
+                    return false;
+                }
             }
         }
 
-        return result;
+        return stack.isEmpty();
 
     }
 }
