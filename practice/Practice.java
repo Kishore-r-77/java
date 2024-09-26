@@ -1,46 +1,27 @@
 package practice;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 20
+        // leetcode 58
 
-        // Input: s = "()"
+        // Input: s = " fly me to the moon "
+        // Output: 4
+        // Explanation: The last word is "moon" with length 4.
 
-        // Output: true
+        String s = " fly me to the moon ";
 
-        String s = "([])";
-
-        System.out.println(isValid(s));
+        System.out.println(lengthOfLastWord(s));
 
     }
 
-    static public boolean isValid(String s) {
+    static public int lengthOfLastWord(String s) {
 
-        char[] charArray = s.toCharArray();
+        s = s.trim();
 
-        Stack<Character> stack = new Stack<>();
+        String[] wordArray = s.split(" ");
 
-        for (int i = 0; i < charArray.length; i++) {
-            if (charArray[i] == '(' || charArray[i] == '[' || charArray[i] == '{') {
-                stack.push(charArray[i]);
-            } else {
-                if (stack.isEmpty()) {
-                    return false;
-                }
-                char top = stack.pop();
-                if (charArray[i] == ')' && top != '(' || charArray[i] == ']' && top != '['
-                        || charArray[i] == '}' && top != '{') {
-                    return false;
-                }
-            }
-        }
-
-        return stack.isEmpty();
+        return wordArray[wordArray.length - 1].length();
 
     }
 }
