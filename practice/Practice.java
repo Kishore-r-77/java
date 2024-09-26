@@ -34,7 +34,7 @@ class Practice {
                 }
                 char top = stack.pop();
                 if (charArray[i] == ')' && top != '(' || charArray[i] == ']' && top != '['
-                        || charArray[i] == '{' && top != '}') {
+                        || charArray[i] == '}' && top != '{') {
                     return false;
                 }
             }
