@@ -1,32 +1,42 @@
 package practice;
 
-import java.util.Arrays;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1480
+        // leetcode 1672
 
-        // Input: nums = [1,2,3,4]
-        // Output: [1,3,6,10]
-        // Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
+        // Input: accounts = [[1,5],[7,3],[3,5]]
+        // Output: 10
+        // Explanation:
+        // 1st customer has wealth = 6
+        // 2nd customer has wealth = 10
+        // 3rd customer has wealth = 8
+        // The 2nd customer is the richest with a wealth of 10.
 
-        int[] nums = { 1, 2, 3, 4 };
+        int[][] accounts = {
+                { 1, 5 },
+                { 7, 3 },
+                { 3, 5 },
+        };
 
-        System.out.println(Arrays.toString(runningSum(nums)));
+        System.out.println(maximumWealth(accounts));
 
     }
 
-    static public int[] runningSum(int[] nums) {
+    static public int maximumWealth(int[][] accounts) {
 
-        int[] result = new int[nums.length];
+        int max = 0;
 
-        int sum = 0;
-        for (int i = 0; i < result.length; i++) {
-            sum += nums[i];
-            result[i] = sum;
+        for (int i = 0; i < accounts.length; i++) {
+            int sum = 0;
+            for (int j = 0; j < accounts[i].length; j++) {
+                sum += accounts[i][j];
+            }
+            if (max < sum) {
+                max = sum;
+            }
         }
-        return result;
+        return max;
 
     }
 
