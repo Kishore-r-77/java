@@ -5,28 +5,27 @@ import java.util.Arrays;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1929
+        // leetcode 1480
 
-        // Input: nums = [1,2,1]
-        // Output: [1,2,1,1,2,1]
-        // Explanation: The array ans is formed as follows:
-        // - ans = [nums[0],nums[1],nums[2],nums[0],nums[1],nums[2]]
-        // - ans = [1,2,1,1,2,1]
+        // Input: nums = [1,2,3,4]
+        // Output: [1,3,6,10]
+        // Explanation: Running sum is obtained as follows: [1, 1+2, 1+2+3, 1+2+3+4].
 
-        int[] nums = { 1, 2, 1 };
+        int[] nums = { 1, 2, 3, 4 };
 
-        System.out.println(Arrays.toString(getConcatenation(nums)));
+        System.out.println(Arrays.toString(runningSum(nums)));
 
     }
 
-    static public int[] getConcatenation(int[] nums) {
-        int result[] = new int[nums.length * 2];
+    static public int[] runningSum(int[] nums) {
 
-        for (int i = 0; i < nums.length; i++) {
-            result[i] = nums[i];
-            result[nums.length + i] = nums[i];
+        int[] result = new int[nums.length];
+
+        int sum = 0;
+        for (int i = 0; i < result.length; i++) {
+            sum += nums[i];
+            result[i] = sum;
         }
-
         return result;
 
     }
