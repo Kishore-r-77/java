@@ -1,32 +1,52 @@
 package practice;
 
-import java.util.Arrays;
+import java.util.ArrayList;
+import java.util.List;
 
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1470
+        // leetcode 1431
 
-        // Input: nums = [2,5,1,3,4,7], n = 3
-        // Output: [2,3,5,4,1,7]
-        // Explanation: Since x1=2, x2=5, x3=1, y1=3, y2=4, y3=7 then the answer is
-        // [2,3,5,4,1,7].
+        // Input: candies = [2,3,5,1,3], extraCandies = 3
+        // Output: [true,true,true,false,true]
+        // Explanation: If you give all extraCandies to:
+        // - Kid 1, they will have 2 + 3 = 5 candies, which is the greatest among the
+        // kids.
+        // - Kid 2, they will have 3 + 3 = 6 candies, which is the greatest among the
+        // kids.
+        // - Kid 3, they will have 5 + 3 = 8 candies, which is the greatest among the
+        // kids.
+        // - Kid 4, they will have 1 + 3 = 4 candies, which is not the greatest among
+        // the kids.
+        // - Kid 5, they will have 3 + 3 = 6 candies, which is the greatest among the
+        // kids.
 
-        int[] nums = { 2, 5, 1, 3, 4, 7 };
+        int[] candies = { 2, 3, 5, 1, 3 };
 
-        System.out.println(Arrays.toString(shuffle(nums, 3)));
+        System.out.println(kidsWithCandies(candies, 3));
 
     }
 
-    static public int[] shuffle(int[] nums, int n) {
+    static public List<Boolean> kidsWithCandies(int[] candies, int extraCandies) {
+        List<Boolean> result = new ArrayList<>();
 
-        int[] result = new int[nums.length];
+        int max = 0;
 
-        for (int i = 0; i < n; i++) {
-            result[2 * i] = nums[i];
-            result[2 * i + 1] = nums[n + i];
-
+        for (int i = 0; i < candies.length; i++) {
+            if (max < candies[i]) {
+                max = candies[i];
+            }
         }
+
+        for (int num : candies) {
+            if (max <= num + extraCandies) {
+                result.add(true);
+            } else {
+                result.add(false);
+            }
+        }
+
         return result;
     }
 
