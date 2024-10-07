@@ -9,37 +9,26 @@ class Practice {
 
         // leetcode 1389
 
-        // Input: nums = [0,1,2,3,4], index = [0,1,2,2,1]
-        // Output: [0,4,1,3,2]
-        // Explanation:
-        // nums index target
-        // 0 0 [0]
-        // 1 1 [0,1]
-        // 2 2 [0,1,2]
-        // 3 2 [0,1,3,2]
-        // 4 1 [0,4,1,3,2]
+        // Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
+        // Output: true
+        // Explanation: sentence contains at least one of every letter of the English
+        // alphabet.
 
-        int[] nums = { 0, 1, 2, 3, 4 };
-        int[] index = { 0, 1, 2, 2, 1 };
+        String sentence = "leetcode";
 
-        System.out.println(Arrays.toString(createTargetArray(nums, index)));
+        System.out.println(checkIfPangram(sentence));
 
     }
 
-    static public int[] createTargetArray(int[] nums, int[] index) {
-        int[] result = new int[nums.length];
+    static public boolean checkIfPangram(String sentence) {
 
-        List<Integer> resultLists = new ArrayList<>();
-
-        for (int i = 0; i < result.length; i++) {
-            resultLists.add(index[i], nums[i]);
+        for (char i = 'a'; i <= 'z'; i++) {
+            if (!sentence.contains(i + "")) {
+                return false;
+            }
         }
 
-        for (int i = 0; i < result.length; i++) {
-            result[i] = resultLists.get(i);
-        }
-
-        return result;
+        return true;
     }
 
 }
