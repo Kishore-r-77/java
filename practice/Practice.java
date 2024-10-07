@@ -24,16 +24,26 @@ class Practice {
 
     static public int[] smallerNumbersThanCurrent(int[] nums) {
 
-        int result[] = new int[nums.length];
+        int[] count = new int[101]; // Step 1: frequency array for range [0, 100]
 
-        for (int i = 0; i < result.length; i++) {
-            int count = 0;
-            for (int j = 0; j < result.length; j++) {
-                if (nums[i] > nums[j]) {
-                    count += 1;
-                }
+        // Step 1: Count the frequency of each number in nums
+        for (int num : nums) {
+            count[num]++;
+        }
+
+        // Step 2: Compute cumulative counts for numbers <= current number
+        for (int i = 1; i < 101; i++) {
+            count[i] += count[i - 1];
+        }
+
+        // Step 3: Prepare the result array
+        int[] result = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] == 0) {
+                result[i] = 0; // No number is smaller than 0
+            } else {
+                result[i] = count[nums[i] - 1]; // How many numbers are smaller than nums[i]
             }
-            result[i] = count;
         }
 
         return result;
