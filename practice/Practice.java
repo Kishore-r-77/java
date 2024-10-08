@@ -5,49 +5,31 @@ import java.util.List;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1773
+        // leetcode 1732
 
-        // Input: items =
-        // [["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]],
-        // ruleKey = "color", ruleValue = "silver"
+        // Input: gain = [-5,1,5,0,-7]
         // Output: 1
-        // Explanation: There is only one item matching the given rule, which is
-        // ["computer","silver","lenovo"].
+        // Explanation: The altitudes are [0,-5,-4,1,1,-6]. The highest is 1.
 
-        List<List<String>> items = List.of(List.of("phone", "blue", "pixel"), List.of("computer", "silver", "lenovo"),
-                List.of("phone", "gold", "iphone"));
+        int[] gain = { -5, 1, 5, 0, -7 };
 
-        System.out.println(countMatches(items, "color", "silver"));
+        System.out.println(largestAltitude(gain));
 
     }
 
-    static public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
+    static public int largestAltitude(int[] gain) {
+        int altitude = 0;
+        int max = 0;
 
-        int count = 0;
-        int index = 0;
-        switch (ruleKey) {
-            case "type":
-                index = 0;
-                break;
-            case "color":
-                index = 1;
-                break;
-            case "name":
-                index = 2;
-                break;
-
-            default:
-                return 0;
-
-        }
-
-        for (List<String> list : items) {
-            if (list.get(index).equals(ruleValue)) {
-                count++;
+        for (int i = 0; i < gain.length; i++) {
+            altitude += gain[i];
+            if (altitude > max) {
+                max = altitude;
             }
         }
 
-        return count;
+        return max;
+
     }
 
 }
