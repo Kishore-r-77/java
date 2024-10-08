@@ -1,34 +1,53 @@
 package practice;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1389
+        // leetcode 1773
 
-        // Input: sentence = "thequickbrownfoxjumpsoverthelazydog"
-        // Output: true
-        // Explanation: sentence contains at least one of every letter of the English
-        // alphabet.
+        // Input: items =
+        // [["phone","blue","pixel"],["computer","silver","lenovo"],["phone","gold","iphone"]],
+        // ruleKey = "color", ruleValue = "silver"
+        // Output: 1
+        // Explanation: There is only one item matching the given rule, which is
+        // ["computer","silver","lenovo"].
 
-        String sentence = "leetcode";
+        List<List<String>> items = List.of(List.of("phone", "blue", "pixel"), List.of("computer", "silver", "lenovo"),
+                List.of("phone", "gold", "iphone"));
 
-        System.out.println(checkIfPangram(sentence));
+        System.out.println(countMatches(items, "color", "silver"));
 
     }
 
-    static public boolean checkIfPangram(String sentence) {
+    static public int countMatches(List<List<String>> items, String ruleKey, String ruleValue) {
 
-        for (char i = 'a'; i <= 'z'; i++) {
-            if (!sentence.contains(i + "")) {
-                return false;
+        int count = 0;
+        int index = 0;
+        switch (ruleKey) {
+            case "type":
+                index = 0;
+                break;
+            case "color":
+                index = 1;
+                break;
+            case "name":
+                index = 2;
+                break;
+
+            default:
+                return 0;
+
+        }
+
+        for (List<String> list : items) {
+            if (list.get(index).equals(ruleValue)) {
+                count++;
             }
         }
 
-        return true;
+        return count;
     }
 
 }
