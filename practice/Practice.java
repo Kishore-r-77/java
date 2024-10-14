@@ -3,53 +3,42 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 832
+        // leetcode 1572
 
-        // Input: m = 2, n = 3, indices = [[0,1],[1,1]]
-        // Output: 6
-        // Explanation: Initial matrix = [[0,0,0],[0,0,0]].
-        // After applying first increment it becomes [[1,2,1],[0,1,0]].
-        // The final matrix is [[1,3,1],[1,3,1]], which contains 6 odd numbers.
+        // Input: mat = [[1,2,3],
+        // [4,5,6],
+        // [7,8,9]]
+        // Output: 25
+        // Explanation: Diagonals sum: 1 + 5 + 9 + 3 + 7 = 25
+        // Notice that element mat[1][1] = 5 is counted only once.
 
-        int[][] indices = {
-                { 0, 1 },
-                { 1, 1 },
+        int[][] mat = {
+                { 1, 2, 3 },
+                { 4, 5, 6 },
+                { 7, 8, 9 },
         };
 
-        // {
-        // {1,3,1},
-        // {1,3,1},
-        // }
-
-        System.out.println(oddCells(2, 3, indices));
+        System.out.println(diagonalSum(mat));
 
     }
 
-    static public int oddCells(int m, int n, int[][] indices) {
-        int[][] matrix = new int[m][n];
-        int count = 0;
+    static public int diagonalSum(int[][] mat) {
 
-        for (int[] index : indices) {
-            int row = index[0];
-            int col = index[1];
+        int sum = 0;
 
-            for (int i = 0; i < n; i++) {
-                matrix[row][i]++;
-            }
-            for (int i = 0; i < m; i++) {
-                matrix[i][col]++;
-            }
+        int n = mat.length;
+
+        for (int i = 0; i < n; i++) {
+            sum += mat[i][i];
+            sum += mat[n - i - 1][i];
         }
 
-        for (int[] row : matrix) {
-			for (int num : row) {
-				if (num % 2 != 0) {
-					count++;
-				}
-			}
-		}
+        if (n % 2 == 1) {
+            sum -= mat[n / 2][n / 2];
+        }
 
-        return count;
+        return sum;
+
     }
 
 }
