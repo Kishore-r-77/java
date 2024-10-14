@@ -3,42 +3,43 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1572
+        // leetcode 1295
 
-        // Input: mat = [[1,2,3],
-        // [4,5,6],
-        // [7,8,9]]
-        // Output: 25
-        // Explanation: Diagonals sum: 1 + 5 + 9 + 3 + 7 = 25
-        // Notice that element mat[1][1] = 5 is counted only once.
+        // Input: nums = [12,345,2,6,7896]
+        // Output: 2
+        // Explanation:
+        // 12 contains 2 digits (even number of digits).
+        // 345 contains 3 digits (odd number of digits).
+        // 2 contains 1 digit (odd number of digits).
+        // 6 contains 1 digit (odd number of digits).
+        // 7896 contains 4 digits (even number of digits).
+        // Therefore only 12 and 7896 contain an even number of digits.
 
-        int[][] mat = {
-                { 1, 2, 3 },
-                { 4, 5, 6 },
-                { 7, 8, 9 },
-        };
+        int[] nums = { 12, 345, 2, 6, 7896 };
 
-        System.out.println(diagonalSum(mat));
+        System.out.println(findNumbers(nums));
 
     }
 
-    static public int diagonalSum(int[][] mat) {
-
-        int sum = 0;
-
-        int n = mat.length;
-
-        for (int i = 0; i < n; i++) {
-            sum += mat[i][i];
-            sum += mat[n - i - 1][i];
+    static public int findNumbers(int[] nums) {
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int digit = checkDigitsCount(nums[i]);
+            if (digit % 2 == 0) {
+                count++;
+            }
         }
+        return count;
+    }
 
-        if (n % 2 == 1) {
-            sum -= mat[n / 2][n / 2];
+    static int checkDigitsCount(int digit) {
+        int count = 0;
+
+        while (digit != 0) {
+            digit /= 10;
+            count++;
         }
-
-        return sum;
-
+        return count;
     }
 
 }
