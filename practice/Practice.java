@@ -1,33 +1,40 @@
 package practice;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 867
+        // leetcode 989
 
-        // Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
-        // Output: [[1,4,7],[2,5,8],[3,6,9]]
+        // Input: num = [1,2,0,0], k = 34
+        // Output: [1,2,3,4]
+        // Explanation: 1200 + 34 = 1234
 
-        int[][] matrix = {
-                { 1, 2, 3 },
-                { 4, 5, 6 },
+        int[] num = { 1, 2, 0, 0 };
 
-        };
-
-        System.out.println(Arrays.deepToString(transpose(matrix)));
+        System.out.println(addToArrayForm(num, 34));
 
     }
 
-    static public int[][] transpose(int[][] matrix) {
-        int[][] result = new int[matrix[0].length][matrix.length];
+    static public List<Integer> addToArrayForm(int[] num, int k) {
+        List<Integer> result = new ArrayList<>();
 
-        for (int i = 0; i < result.length; i++) {
-            for (int j = 0; j < result[0].length; j++) {
-                result[i][j] = matrix[j][i];
+        int i = num.length - 1;
+
+        while (i >= 0 || k > 0) {
+            if (i >= 0) {
+                k += num[i];
             }
+            result.add(k % 10);
+            k /= 10;
+            i--;
         }
+
+        Collections.reverse(result);
 
         return result;
     }
