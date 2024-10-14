@@ -1,45 +1,35 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1295
+        // leetcode 867
 
-        // Input: nums = [12,345,2,6,7896]
-        // Output: 2
-        // Explanation:
-        // 12 contains 2 digits (even number of digits).
-        // 345 contains 3 digits (odd number of digits).
-        // 2 contains 1 digit (odd number of digits).
-        // 6 contains 1 digit (odd number of digits).
-        // 7896 contains 4 digits (even number of digits).
-        // Therefore only 12 and 7896 contain an even number of digits.
+        // Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+        // Output: [[1,4,7],[2,5,8],[3,6,9]]
 
-        int[] nums = { 12, 345, 2, 6, 7896 };
+        int[][] matrix = {
+                { 1, 2, 3 },
+                { 4, 5, 6 },
 
-        System.out.println(findNumbers(nums));
+        };
+
+        System.out.println(Arrays.deepToString(transpose(matrix)));
 
     }
 
-    static public int findNumbers(int[] nums) {
-        int count = 0;
-        for (int i = 0; i < nums.length; i++) {
-            int digit = checkDigitsCount(nums[i]);
-            if (digit % 2 == 0) {
-                count++;
+    static public int[][] transpose(int[][] matrix) {
+        int[][] result = new int[matrix[0].length][matrix.length];
+
+        for (int i = 0; i < result.length; i++) {
+            for (int j = 0; j < result[0].length; j++) {
+                result[i][j] = matrix[j][i];
             }
         }
-        return count;
-    }
 
-    static int checkDigitsCount(int digit) {
-        int count = 0;
-
-        while (digit != 0) {
-            digit /= 10;
-            count++;
-        }
-        return count;
+        return result;
     }
 
 }
