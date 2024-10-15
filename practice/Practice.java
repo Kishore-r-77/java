@@ -1,42 +1,47 @@
 package practice;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 989
+        // leetcode 1854
 
-        // Input: num = [1,2,0,0], k = 34
-        // Output: [1,2,3,4]
-        // Explanation: 1200 + 34 = 1234
+        // Input: logs = [[1993,1999],[2000,2010]]
+        // Output: 1993
+        // Explanation: The maximum population is 1, and 1993 is the earliest year with
+        // this population.
 
-        int[] num = { 1, 2, 0, 0 };
+        int[][] logs = {
+                { 1993, 1999 },
+                { 2000, 2010 },
+        };
 
-        System.out.println(addToArrayForm(num, 34));
+        System.out.println(maximumPopulation(logs));
 
     }
 
-    static public List<Integer> addToArrayForm(int[] num, int k) {
-        List<Integer> result = new ArrayList<>();
+    static public int maximumPopulation(int[][] logs) {
+        int[] populationChanges = new int[101];
 
-        int i = num.length - 1;
-
-        while (i >= 0 || k > 0) {
-            if (i >= 0) {
-                k += num[i];
-            }
-            result.add(k % 10);
-            k /= 10;
-            i--;
+        for (int log[] : logs) {
+            int birth = log[0] - 1950;
+            int death = log[1] - 1950;
+            populationChanges[birth]++;
+            populationChanges[death]--;
         }
 
-        Collections.reverse(result);
+        int maxPopulation = 0;
+        int currentPopulation = 0;
+        int year = 1950;
 
-        return result;
+        for (int i = 0; i < populationChanges.length; i++) {
+            currentPopulation += populationChanges[i];
+            if (currentPopulation > maxPopulation) {
+                maxPopulation = currentPopulation;
+                year = 1950 + i;
+            }
+        }
+
+        return year;
     }
 
 }
