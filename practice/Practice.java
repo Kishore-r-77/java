@@ -5,30 +5,31 @@ import java.util.HashMap;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1
+        // leetcode 1304
 
-        // Input: nums = [2,7,11,15], target = 9
-        // Output: [0,1]
-        // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
+        // Input: n = 5
+        // Output: [-7,-1,1,3,4]
+        // Explanation: These arrays also are accepted [-5,-1,1,2,3] , [-3,-1,2,-2,4].
 
-        int[] nums = { 2, 7, 11, 15 };
-
-        System.out.println(twoSum(nums, 9));
+        System.out.println(sumZero(5));
 
     }
 
-    static public int[] twoSum(int[] nums, int target) {
-        HashMap<Integer, Integer> map = new HashMap<>();
+    static public int[] sumZero(int n) {
 
-        for (int i = 0; i < nums.length; i++) {
-            int compliment = target - nums[i];
+        int[] arr = new int[n];
+        int value = 1;
 
-            if (map.containsKey(compliment)) {
-                return new int[] { map.get(compliment), i };
-            }
-            map.put(nums[i], i);
+        for (int i = 0; i < n / 2; i++) {
+            arr[i] = value;
+            arr[n - i - 1] = -value;
+            value++;
         }
-        return new int[] { -1, -1 };
+
+        if (n / 2 != 0) {
+            arr[n / 2] = 0;
+        }
+        return arr;
     }
 
 }
