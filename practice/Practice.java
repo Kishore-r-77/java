@@ -1,78 +1,34 @@
 package practice;
 
+import java.util.HashMap;
+
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1886
+        // leetcode 1
 
-        // Input: mat = [[0,1],[1,0]], target = [[1,0],[0,1]]
-        // Output: true
+        // Input: nums = [2,7,11,15], target = 9
+        // Output: [0,1]
+        // Explanation: Because nums[0] + nums[1] == 9, we return [0, 1].
 
-        int[][] mat = {
-                { 0, 1 },
-                { 1, 0 },
-        };
-        int[][] target = {
-                { 1, 0 },
-                { 0, 1 },
-        };
+        int[] nums = { 2, 7, 11, 15 };
 
-        // [[1, 2],
-        // [3, 4]]
-
-        // [[3, 1],
-        // [4, 2]]
-
-        // 4 3
-        // 2 1
-
-        System.out.println(findRotation(mat, target));
+        System.out.println(twoSum(nums, 9));
 
     }
 
-    static public boolean findRotation(int[][] mat, int[][] target) {
-        for (int i = 0; i < 4; i++) {
-            if (equals(mat, target)) {
-                return true;
+    static public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int compliment = target - nums[i];
+
+            if (map.containsKey(compliment)) {
+                return new int[] { map.get(compliment), i };
             }
-            rotate(mat);
+            map.put(nums[i], i);
         }
-
-        return false;
-
-    }
-
-    static public void rotate(int[][] mat) {
-        for (int i = 0; i < mat.length; i++) {
-            for (int j = i + 1; j < mat.length; j++) {
-                int temp = mat[i][j];
-                mat[i][j] = mat[j][i];
-                mat[j][i] = temp;
-            }
-        }
-
-        for (int i = 0; i < mat.length; i++) {
-            for (int j = 0; j < mat.length / 2; j++) {
-                int temp = mat[i][j];
-                mat[i][j] = mat[i][mat.length - 1 - j];
-                mat[i][mat.length - 1 - j] = temp;
-            }
-        }
-
-    }
-
-    static public boolean equals(int[][] mat, int[][] target) {
-
-        for (int i = 0; i < target.length; i++) {
-            for (int j = 0; j < target[0].length; j++) {
-                if (mat[i][j] != target[i][j]) {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-
+        return new int[] { -1, -1 };
     }
 
 }
