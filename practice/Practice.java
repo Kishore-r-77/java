@@ -1,35 +1,55 @@
 package practice;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1304
+        // leetcode 1380
 
-        // Input: n = 5
-        // Output: [-7,-1,1,3,4]
-        // Explanation: These arrays also are accepted [-5,-1,1,2,3] , [-3,-1,2,-2,4].
+        // Input: matrix = [[3,7,8],[9,11,13],[15,16,17]]
+        // Output: [15]
+        // Explanation: 15 is the only lucky number since it is the minimum in its row
+        // and the maximum in its column.
 
-        System.out.println(sumZero(5));
+        int[][] matrix = {
+                { 3, 7, 8 },
+                { 9, 11, 13 },
+                { 15, 16, 17 },
+        };
+
+        System.out.println(luckyNumbers(matrix));
 
     }
 
-    static public int[] sumZero(int n) {
+    static public List<Integer> luckyNumbers(int[][] matrix) {
+        List<Integer> result = new ArrayList<>();
 
-        int[] arr = new int[n];
-        int value = 1;
+        for (int i = 0; i < matrix.length; i++) {
+            int minRow = matrix[i][0];
+            int colIndex = 0;
 
-        for (int i = 0; i < n / 2; i++) {
-            arr[i] = value;
-            arr[n - i - 1] = -value;
-            value++;
+            for (int j = 1; j < matrix[i].length; j++) {
+                if (minRow > matrix[i][j]) {
+                    minRow = matrix[i][j];
+                    colIndex = j;
+                }
+            }
+            boolean isMax = true;
+            for (int j = 0; j < matrix.length; j++) {
+                if (minRow < matrix[j][colIndex]) {
+                    isMax = false;
+                    break;
+                }
+            }
+            if (isMax) {
+                result.add(minRow);
+            }
+
         }
 
-        if (n / 2 != 0) {
-            arr[n / 2] = 0;
-        }
-        return arr;
+        return result;
     }
 
 }
