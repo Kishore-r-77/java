@@ -1,38 +1,39 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 53
+        // leetcode 66
 
-        // Input: nums = [-2,1,-3,4,-1,2,1,-5,4]
-        // Output: 6
-        // Explanation: The subarray [4,-1,2,1] has the largest sum 6.
+        // Input: digits = [1,2,3]
+        // Output: [1,2,4]
+        // Explanation: The array represents the integer 123.
+        // Incrementing by one gives 123 + 1 = 124.
+        // Thus, the result should be [1,2,4].
 
-        int[] nums = { -2, 1, -3, 4, -1, 2, 1, -5, 4 };
+        int[] digits = { 9, 9, 9 };
 
-        System.out.println(maxSubArray(nums));
+        System.out.println(Arrays.toString(plusOne(digits)));
 
     }
 
-    static public int maxSubArray(int[] nums) {
+    static public int[] plusOne(int[] digits) {
 
-        int currentSum = 0;
-        int maxSum = nums[0];
+        int n = digits.length;
 
-        for (int i = 0; i < nums.length; i++) {
-            if (currentSum + nums[i] > nums[i]) {
-                currentSum = currentSum + nums[i];
-            } else {
-                currentSum = nums[i];
+        for (int i = n - 1; i >= 0; i--) {
+            if (digits[i] < 9) {
+                digits[i]++;
+                return digits;
             }
-
-            if (maxSum < currentSum) {
-                maxSum = currentSum;
-            }
+            digits[i] = 0;
         }
 
-        return maxSum;
+        int[] newArray = new int[n + 1];
+        newArray[0] = 1;
+        return newArray;
 
     }
 
