@@ -1,39 +1,35 @@
 package practice;
 
-import java.util.Arrays;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 66
+        // leetcode 26
 
-        // Input: digits = [1,2,3]
-        // Output: [1,2,4]
-        // Explanation: The array represents the integer 123.
-        // Incrementing by one gives 123 + 1 = 124.
-        // Thus, the result should be [1,2,4].
+        // Input: nums = [0,0,1,1,1,2,2,3,3,4]
+        // Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
+        // Explanation: Your function should return k = 5, with the first five elements
+        // of nums being 0, 1, 2, 3, and 4 respectively.
+        // It does not matter what you leave beyond the returned k (hence they are
+        // underscores).
 
-        int[] digits = { 9, 9, 9 };
+        int[] nums = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
 
-        System.out.println(Arrays.toString(plusOne(digits)));
+        System.out.println(removeDuplicates(nums));
 
     }
 
-    static public int[] plusOne(int[] digits) {
+    static public int removeDuplicates(int[] nums) {
 
-        int n = digits.length;
+        int i = 0;
 
-        for (int i = n - 1; i >= 0; i--) {
-            if (digits[i] < 9) {
-                digits[i]++;
-                return digits;
+        for (int j = 1; j < nums.length; j++) {
+            if (nums[i] != nums[j]) {
+                i++;
+                nums[i] = nums[j];
             }
-            digits[i] = 0;
         }
 
-        int[] newArray = new int[n + 1];
-        newArray[0] = 1;
-        return newArray;
+        return i + 1;
 
     }
 
