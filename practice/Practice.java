@@ -3,34 +3,39 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 26
+        // leetcode 1217
 
-        // Input: nums = [0,0,1,1,1,2,2,3,3,4]
-        // Output: 5, nums = [0,1,2,3,4,_,_,_,_,_]
-        // Explanation: Your function should return k = 5, with the first five elements
-        // of nums being 0, 1, 2, 3, and 4 respectively.
-        // It does not matter what you leave beyond the returned k (hence they are
-        // underscores).
+        // Input: position = [1,2,3]
+        // Output: 1
+        // Explanation: First step: Move the chip at position 3 to position 1 with cost
+        // = 0.
+        // Second step: Move the chip at position 2 to position 1 with cost = 1.
+        // Total cost is 1.
 
-        int[] nums = { 0, 0, 1, 1, 1, 2, 2, 3, 3, 4 };
-
-        System.out.println(removeDuplicates(nums));
+        int[] position = { 1, 2, 3 };
+        System.out.println(minCostToMoveChips(position));
 
     }
 
-    static public int removeDuplicates(int[] nums) {
+    static public int minCostToMoveChips(int[] position) {
+        int evenCount = 0;
+        int oddCount = 0;
+        int min = 0;
 
-        int i = 0;
-
-        for (int j = 1; j < nums.length; j++) {
-            if (nums[i] != nums[j]) {
-                i++;
-                nums[i] = nums[j];
+        for (int chip : position) {
+            if (chip % 2 == 0) {
+                evenCount++;
+            } else {
+                oddCount++;
             }
         }
+        if (oddCount > evenCount) {
+            min = evenCount;
+        } else {
+            min = oddCount;
+        }
 
-        return i + 1;
-
+        return min;
     }
 
 }
