@@ -3,39 +3,37 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1217
+        // leetcode 69
 
-        // Input: position = [1,2,3]
-        // Output: 1
-        // Explanation: First step: Move the chip at position 3 to position 1 with cost
-        // = 0.
-        // Second step: Move the chip at position 2 to position 1 with cost = 1.
-        // Total cost is 1.
+        // Input: x = 4
+        // Output: 2
+        // Explanation: The square root of 4 is 2, so we return 2.
 
-        int[] position = { 1, 2, 3 };
-        System.out.println(minCostToMoveChips(position));
+        System.out.println(mySqrt(8));
 
     }
 
-    static public int minCostToMoveChips(int[] position) {
-        int evenCount = 0;
-        int oddCount = 0;
-        int min = 0;
+    static public int mySqrt(int x) {
 
-        for (int chip : position) {
-            if (chip % 2 == 0) {
-                evenCount++;
+        if (x < 2) {
+            return x;
+        }
+        int start = 1;
+        int end = x;
+
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+
+            if ((long) mid * mid > (long) x) {
+                end = mid - 1;
+            } else if ((long) mid * mid < (long) x) {
+                start = mid + 1;
             } else {
-                oddCount++;
+                return mid;
             }
         }
-        if (oddCount > evenCount) {
-            min = evenCount;
-        } else {
-            min = oddCount;
-        }
 
-        return min;
+        return end;
     }
 
 }
