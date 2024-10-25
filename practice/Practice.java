@@ -3,33 +3,38 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 372
+        // leetcode 278
 
-        // Input: n = 10, pick = 6
-        // Output: 6
+        // Input: n = 5, bad = 4
+        // Output: 4
+        // Explanation:
+        // call isBadVersion(3) -> false
+        // call isBadVersion(5) -> true
+        // call isBadVersion(4) -> true
+        // Then 4 is the first bad version.
 
     }
 
-    static public int guessNumber(int n) {
-        int start = 0;
+    static public int firstBadVersion(int n) {
+        int start = 1;
         int end = n;
+        int badVersion = 1;
+
         while (start <= end) {
             int mid = start + (end - start) / 2;
-            if (guess(mid) == 1) {
-                start = mid + 1;
-            } else if (guess(mid) == -1) {
+            if (isBadVersion(mid)) {
                 end = mid - 1;
+                badVersion = mid;
             } else {
-                return mid;
+                start = mid + 1;
             }
         }
-        return -1;
-
+        return badVersion;
     }
 
     // this is a predefined api fn for the problem
-    static public int guess(int num) {
-        return 0;
+    static public boolean isBadVersion(int num) {
+        return false;
     }
 
 }
