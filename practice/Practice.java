@@ -3,37 +3,33 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 69
+        // leetcode 372
 
-        // Input: x = 4
-        // Output: 2
-        // Explanation: The square root of 4 is 2, so we return 2.
-
-        System.out.println(mySqrt(8));
+        // Input: n = 10, pick = 6
+        // Output: 6
 
     }
 
-    static public int mySqrt(int x) {
-
-        if (x < 2) {
-            return x;
-        }
-        int start = 1;
-        int end = x;
-
+    static public int guessNumber(int n) {
+        int start = 0;
+        int end = n;
         while (start <= end) {
             int mid = start + (end - start) / 2;
-
-            if ((long) mid * mid > (long) x) {
-                end = mid - 1;
-            } else if ((long) mid * mid < (long) x) {
+            if (guess(mid) == 1) {
                 start = mid + 1;
+            } else if (guess(mid) == -1) {
+                end = mid - 1;
             } else {
                 return mid;
             }
         }
+        return -1;
 
-        return end;
+    }
+
+    // this is a predefined api fn for the problem
+    static public int guess(int num) {
+        return 0;
     }
 
 }
