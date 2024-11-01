@@ -1,39 +1,33 @@
 package practice;
 
-import java.util.Arrays;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 167
+        // leetcode 367
 
-        // Input: numbers = [2,7,11,15], target = 9
-        // Output: [1,2]
-        // Explanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We
-        // return [1, 2].
+        // Input: num = 16
+        // Output: true
+        // Explanation: We return true because 4 * 4 = 16 and 4 is an integer.
 
-        int[] numbers = { 2, 7, 11, 15 };
-        System.out.println(Arrays.toString(twoSum(numbers, 9)));
+        System.out.println(isPerfectSquare(16));
     }
 
-    static public int[] twoSum(int[] numbers, int target) {
-
+    static public boolean isPerfectSquare(int num) {
         int start = 0;
-        int end = numbers.length - 1;
+        int end = num;
 
-        while (start < end) {
-            int sum = numbers[start] + numbers[end];
-
-            if (sum == target) {
-                return new int[] { start + 1, end + 1 };
-            } else if (sum > target) {
-                end--;
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if ((long) mid * mid == num) {
+                return true;
+            } else if ((long) mid * mid < num) {
+                start = mid + 1;
             } else {
-                start++;
+                end = mid - 1;
             }
         }
 
-        return new int[] { -1, -1 };
+        return false;
 
     }
 
