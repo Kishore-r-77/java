@@ -3,32 +3,33 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 367
+        // leetcode 441
 
-        // Input: num = 16
-        // Output: true
-        // Explanation: We return true because 4 * 4 = 16 and 4 is an integer.
+        // Input: n = 5
+        // Output: 2
+        // Explanation: Because the 3rd row is incomplete, we return 2.
 
-        System.out.println(isPerfectSquare(16));
+        System.out.println(arrangeCoins(8));
     }
 
-    static public boolean isPerfectSquare(int num) {
+    static public int arrangeCoins(int n) {
         int start = 0;
-        int end = num;
+        int end = n;
 
         while (start <= end) {
             int mid = start + (end - start) / 2;
-            if ((long) mid * mid == num) {
-                return true;
-            } else if ((long) mid * mid < num) {
+
+            long sum = (long) mid * (mid + 1) / 2;
+
+            if (sum == n) {
+                return mid;
+            } else if (sum < n) {
                 start = mid + 1;
             } else {
                 end = mid - 1;
             }
         }
-
-        return false;
-
+        return end;
     }
 
 }
