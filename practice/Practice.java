@@ -3,33 +3,36 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 441
+        // leetcode 744
 
-        // Input: n = 5
-        // Output: 2
-        // Explanation: Because the 3rd row is incomplete, we return 2.
+        // Input: letters = ["c","f","j"], target = "a"
+        // Output: "c"
+        // Explanation: The smallest character that is lexicographically greater than
+        // 'a' in letters is 'c'.
 
-        System.out.println(arrangeCoins(8));
+        char[] letters = { 'c', 'f', 'j' };
+
+        System.out.println(nextGreatestLetter(letters, 'd'));
     }
 
-    static public int arrangeCoins(int n) {
+    static public char nextGreatestLetter(char[] letters, char target) {
+
         int start = 0;
-        int end = n;
+        int end = letters.length - 1;
 
         while (start <= end) {
             int mid = start + (end - start) / 2;
 
-            long sum = (long) mid * (mid + 1) / 2;
-
-            if (sum == n) {
-                return mid;
-            } else if (sum < n) {
+            if (letters[mid] <= target) {
                 start = mid + 1;
             } else {
                 end = mid - 1;
             }
+
         }
-        return end;
+
+        return letters[start % letters.length];
+
     }
 
 }
