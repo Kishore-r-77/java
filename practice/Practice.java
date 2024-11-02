@@ -3,35 +3,35 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 744
+        // leetcode 1539
 
-        // Input: letters = ["c","f","j"], target = "a"
-        // Output: "c"
-        // Explanation: The smallest character that is lexicographically greater than
-        // 'a' in letters is 'c'.
+        // Input: arr = [2,3,4,7,11], k = 5
+        // Output: 9
+        // Explanation: The missing positive integers are [1,5,6,8,9,10,12,13,...]. The
+        // 5th missing positive integer is 9.
 
-        char[] letters = { 'c', 'f', 'j' };
+        int[] arr = { 2, 3, 4, 7, 11 };
 
-        System.out.println(nextGreatestLetter(letters, 'd'));
+        System.out.println(findKthPositive(arr, 5));
     }
 
-    static public char nextGreatestLetter(char[] letters, char target) {
+    static public int findKthPositive(int[] arr, int k) {
 
         int start = 0;
-        int end = letters.length - 1;
+        int end = arr.length - 1;
 
         while (start <= end) {
             int mid = start + (end - start) / 2;
+            int missing = arr[mid] - (mid + 1);
 
-            if (letters[mid] <= target) {
+            if (missing < k) {
                 start = mid + 1;
             } else {
                 end = mid - 1;
             }
-
         }
 
-        return letters[start % letters.length];
+        return start + k;
 
     }
 
