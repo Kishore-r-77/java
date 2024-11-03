@@ -1,49 +1,46 @@
 package practice;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1351
+        // leetcode 349
 
-        // Input: grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]
-        // Output: 8
-        // Explanation: There are 8 negatives number in the matrix.
+        // Input: nums1 = [1,2,2,1], nums2 = [2,2]
+        // Output: [2]
 
-        int[][] grid = {
-                { 4, 3, 2, -1 },
-                { 3, 2, 1, -1 },
-                { 1, 1, -1, -2 },
-                { -1, -1, -2, -3 },
-        };
+        int[] nums1 = { 1, 2, 2, 1 };
+        int[] nums2 = { 2, 2 };
 
-        System.out.println(countNegatives(grid));
-
+        System.out.println(Arrays.toString(intersection(nums1, nums2)));
     }
 
-    static public int countNegatives(int[][] grid) {
-        int count = 0;
-        for (int[] arr : grid) {
-            count += findNegative(arr);
+    static public int[] intersection(int[] nums1, int[] nums2) {
+        Set<Integer> numSet1 = new HashSet<>();
+        Set<Integer> resultSet = new HashSet<>();
+
+        for (Integer num : nums1) {
+            numSet1.add(num);
         }
-
-        return count;
-    }
-
-    static int findNegative(int[] arr) {
-        int start = 0;
-        int end = arr.length - 1;
-        int count = 0;
-
-        while (start <= end) {
-            int mid = start + (end - start) / 2;
-            if (arr[mid] > 0) {
-                start = mid + 1;
-            } else {
-                end = mid - 1;
+        for (Integer num : nums2) {
+            if (numSet1.contains(num)) {
+                resultSet.add(num);
             }
         }
-        count += arr.length - start;
 
-        return count;
+        int[] result = new int[resultSet.size()];
+
+        int index = 0;
+
+        for (int i : resultSet) {
+            result[index++] = i;
+        }
+
+        return result;
+
     }
+
 }
