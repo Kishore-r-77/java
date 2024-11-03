@@ -3,35 +3,47 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 852
+        // leetcode 1351
 
-        // Input: arr = [0,1,0]
+        // Input: grid = [[4,3,2,-1],[3,2,1,-1],[1,1,-1,-2],[-1,-1,-2,-3]]
+        // Output: 8
+        // Explanation: There are 8 negatives number in the matrix.
 
-        // Output: 1
+        int[][] grid = {
+                { 4, 3, 2, -1 },
+                { 3, 2, 1, -1 },
+                { 1, 1, -1, -2 },
+                { -1, -1, -2, -3 },
+        };
 
-        int[] nums = { 0, 1, 0 };
-
-        System.out.println(peakIndexInMountainArray(nums));
+        System.out.println(countNegatives(grid));
 
     }
 
-    static public int peakIndexInMountainArray(int[] arr) {
-
-        int start = 0;
-        int end = arr.length - 1;
-
-        while (start < end) {
-            int mid = start + (end - start) / 2;
-
-            if (arr[mid] < arr[mid + 1]) {
-                start = mid + 1;
-            } else {
-                end = mid;
-            }
+    static public int countNegatives(int[][] grid) {
+        int count = 0;
+        for (int[] arr : grid) {
+            count += findNegative(arr);
         }
 
-        return end;
-
+        return count;
     }
 
+    static int findNegative(int[] arr) {
+        int start = 0;
+        int end = arr.length - 1;
+        int count = 0;
+
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+            if (arr[mid] > 0) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        count += arr.length - start;
+
+        return count;
+    }
 }
