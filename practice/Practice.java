@@ -1,44 +1,31 @@
 package practice;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 888
+        // leetcode 1346
 
-        // Input: aliceSizes = [1,1], bobSizes = [2,2]
-        // Output: [1,2]
+        // Input: arr = [10,2,5,3]
+        // Output: true
+        // Explanation: For i = 0 and j = 2, arr[i] == 10 == 2 * 5 == 2 * arr[j]
 
-        int[] aliceSizes = { 1, 1 };
-        int[] bobSizes = { 2, 2 };
+        int[] arr = { 7, 1, 14, 11 };
 
-        System.out.println(Arrays.toString(fairCandySwap(aliceSizes, bobSizes)));
+        System.out.println(checkIfExist(arr));
 
     }
 
-    static public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
-
-        int sumA = 0, sumB = 0;
-        Set<Integer> setB = new HashSet<>();
-
-        for (int a : aliceSizes) {
-            sumA += a;
-        }
-        for (int b : bobSizes) {
-            sumB += b;
-            setB.add(b);
-        }
-        int diff = (sumB - sumA) / 2;
-        for (Integer a : aliceSizes) {
-            if (setB.contains(a + diff)) {
-                return new int[] { a, a + diff };
+    static public boolean checkIfExist(int[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr.length; j++) {
+                if (i == j) {
+                    continue;
+                } else if (arr[i] == 2 * arr[j]) {
+                    return true;
+                }
             }
         }
-
-        return new int[0];
+        return false;
     }
 
 }
