@@ -1,47 +1,44 @@
 package practice;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
+import java.util.Set;
 
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 350
+        // leetcode 888
 
-        // Input: nums1 = [1,2,2,1], nums2 = [2,2]
-        // Output: [2]
+        // Input: aliceSizes = [1,1], bobSizes = [2,2]
+        // Output: [1,2]
 
-        int[] nums1 = { 4, 9, 5 };
-        int[] nums2 = { 9, 4, 9, 8, 4 };
+        int[] aliceSizes = { 1, 1 };
+        int[] bobSizes = { 2, 2 };
 
-        System.out.println(Arrays.toString(intersection(nums1, nums2)));
+        System.out.println(Arrays.toString(fairCandySwap(aliceSizes, bobSizes)));
+
     }
 
-    static public int[] intersection(int[] nums1, int[] nums2) {
+    static public int[] fairCandySwap(int[] aliceSizes, int[] bobSizes) {
 
-        Map<Integer, Integer> map = new HashMap<>();
-        List<Integer> resultList = new ArrayList<>();
+        int sumA = 0, sumB = 0;
+        Set<Integer> setB = new HashSet<>();
 
-        for (int i = 0; i < nums1.length; i++) {
-            map.put(nums1[i], map.getOrDefault(nums1[i], 0) + 1);
+        for (int a : aliceSizes) {
+            sumA += a;
         }
-
-        for (int i = 0; i < nums2.length; i++) {
-            if (map.containsKey(nums2[i]) && map.get(nums2[i]) > 0) {
-                resultList.add(nums2[i]);
-                map.put(nums2[i], map.get(nums2[i]) - 1);
+        for (int b : bobSizes) {
+            sumB += b;
+            setB.add(b);
+        }
+        int diff = (sumB - sumA) / 2;
+        for (Integer a : aliceSizes) {
+            if (setB.contains(a + diff)) {
+                return new int[] { a, a + diff };
             }
         }
-        int[] result = new int[resultList.size()];
-        for (int i = 0; i < resultList.size(); i++) {
-            result[i] = resultList.get(i);
-        }
 
-        return result;
-
+        return new int[0];
     }
 
 }
