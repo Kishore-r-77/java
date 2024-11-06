@@ -3,29 +3,35 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1346
+        // leetcode 1608
 
-        // Input: arr = [10,2,5,3]
-        // Output: true
-        // Explanation: For i = 0 and j = 2, arr[i] == 10 == 2 * 5 == 2 * arr[j]
+        // Input: nums = [3,5]
+        // Output: 2
+        // Explanation: There are 2 values (3 and 5) that are greater than or equal to
+        // 2.
 
-        int[] arr = { 7, 1, 14, 11 };
-
-        System.out.println(checkIfExist(arr));
+        int[] nums = { 3, 5 };
+        System.out.println(specialArray(nums));
 
     }
 
-    static public boolean checkIfExist(int[] arr) {
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = 0; j < arr.length; j++) {
-                if (i == j) {
-                    continue;
-                } else if (arr[i] == 2 * arr[j]) {
-                    return true;
+    static public int specialArray(int[] nums) {
+
+        for (int i = 1; i < 1001; i++) {
+            int count = 0;
+
+            for (int j : nums) {
+                if (j >= i) {
+                    count++;
                 }
+
+            }
+            if (count == i) {
+                return count;
             }
         }
-        return false;
+
+        return -1;
     }
 
 }
