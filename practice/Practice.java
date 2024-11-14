@@ -1,37 +1,37 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 1608
+        // Input : A = {1, 2, 3, 4, 5}
+        // Output : [48]
+        // [20, 28]
+        // [8, 12, 16]
+        // [3, 5, 7, 9]
+        // [1, 2, 3, 4, 5]
 
-        // Input: nums = [3,5]
-        // Output: 2
-        // Explanation: There are 2 values (3 and 5) that are greater than or equal to
-        // 2.
-
-        int[] nums = { 3, 5 };
-        System.out.println(specialArray(nums));
+        int[] nums = { 1, 2, 3, 4, 5 };
+        sumOfTriangle(nums);
 
     }
 
-    static public int specialArray(int[] nums) {
+    static public void sumOfTriangle(int[] nums) {
 
-        for (int i = 1; i < 1001; i++) {
-            int count = 0;
-
-            for (int j : nums) {
-                if (j >= i) {
-                    count++;
-                }
-
-            }
-            if (count == i) {
-                return count;
-            }
+        int[] result = new int[nums.length - 1];
+        if (result.length < 1) {
+            return;
         }
 
-        return -1;
+        for (int i = 0; i < result.length; i++) {
+            result[i] = nums[i] + nums[i + 1];
+        }
+
+        System.out.println(Arrays.toString(result));
+
+        sumOfTriangle(result);
+
     }
 
 }
