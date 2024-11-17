@@ -1,37 +1,45 @@
 package practice;
 
+import java.util.Arrays;
+
 class Practice {
     public static void main(String[] args) {
 
-        // Input : geeksforgeeKs
-        // Output : K
+        // leetcode 344
 
-        // Input : geekS
-        // Output : S
+        // Example 1:
 
-        String s = "geeksforgees";
+        // Input: s = ["h","e","l","l","o"]
+        // Output: ["o","l","l","e","h"]
 
-        System.out.println(firstCapitalLetter(s));
+        char[] s = { 'H', 'a', 'n', 'n', 'a', 'h' };
 
-    }
-
-    static public char firstCapitalLetter(String s) {
-        return recursiveSearch(s, 0);
+        reverseString(s);
+        System.out.println(Arrays.toString(s));
 
     }
 
-    static public char recursiveSearch(String s, int index) {
-        if (index == s.length()) {
-            throw new IllegalArgumentException("No capital letter found");
+    static public void reverseString(char[] s) {
+        recursiveReverse(s, 0, s.length - 1);
+
+    }
+
+    static public void recursiveReverse(char[] s, int start, int end) {
+        if (start >= end) {
+            return;
         }
+        swap(start, end, s);
+        start += 1;
+        end -= 1;
+        recursiveReverse(s, start, end);
+    }
 
-        char currentChar = s.charAt(index);
+    static void swap(int start, int end, char[] arr) {
 
-        if (Character.isUpperCase(currentChar)) {
-            return currentChar;
-        }
+        char temp = arr[start];
+        arr[start] = arr[end];
+        arr[end] = temp;
 
-        return recursiveSearch(s, index + 1);
     }
 
 }
