@@ -5,43 +5,33 @@ import java.util.Arrays;
 class Practice {
     public static void main(String[] args) {
 
-        // Input: arr = {1, 4, 3, -5, -4, 8, 6};
-        // Output: min = -5, max = 8
+        // leetcode 704
 
-        int[] nums = { 1, 4, 3, -5, -4, 8, 6 };
+        // Input: nums = [-1,0,3,5,9,12], target = 9
+        // Output: 4
+        // Explanation: 9 exists in nums and its index is 4
 
-        System.out.println(Arrays.toString(minMaxRecursive(nums, 0, nums.length - 1)));
+        int[] nums = { -1, 0, 3, 5, 9, 12 };
+
+        System.out.println(search(nums, 9, 0, nums.length - 1));
 
     }
 
-    static public int[] minMaxRecursive(int[] nums, int start, int end) {
-
-        if (start == end) {
-            return new int[] { nums[start], nums[end] };
-        }
-
-        if (end - start == 1) {
-            return new int[] { minValue(nums[start], nums[end]), maxValue(nums[start], nums[end]) };
-        }
+    static public int search(int[] nums, int target, int start, int end) {
 
         int mid = start + (end - start) / 2;
 
-        int[] leftArray = minMaxRecursive(nums, start, mid);
-        int[] rightArray = minMaxRecursive(nums, mid + 1, end);
+        if (nums[mid] == target) {
+            return mid;
+        }
+        if (nums[mid] < target) {
+            return search(nums, target, mid + 1, end);
+        } else if (nums[mid] > target) {
+            return search(nums, target, start, mid - 1);
+        }
 
-        int min = minValue(leftArray[0], rightArray[0]);
-        int max = maxValue(leftArray[1], rightArray[1]);
+        return -1;
 
-        return new int[] { min, max };
-
-    }
-
-    static int maxValue(int val1, int val2) {
-        return val1 > val2 ? val1 : val2;
-    }
-
-    static int minValue(int val1, int val2) {
-        return val1 < val2 ? val1 : val2;
     }
 
 }
