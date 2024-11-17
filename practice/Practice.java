@@ -1,37 +1,37 @@
 package practice;
 
-import java.util.Arrays;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 704
+        // Input : geeksforgeeKs
+        // Output : K
 
-        // Input: nums = [-1,0,3,5,9,12], target = 9
-        // Output: 4
-        // Explanation: 9 exists in nums and its index is 4
+        // Input : geekS
+        // Output : S
 
-        int[] nums = { -1, 0, 3, 5, 9, 12 };
+        String s = "geeksforgees";
 
-        System.out.println(search(nums, 9, 0, nums.length - 1));
+        System.out.println(firstCapitalLetter(s));
 
     }
 
-    static public int search(int[] nums, int target, int start, int end) {
+    static public char firstCapitalLetter(String s) {
+        return recursiveSearch(s, 0);
 
-        int mid = start + (end - start) / 2;
+    }
 
-        if (nums[mid] == target) {
-            return mid;
-        }
-        if (nums[mid] < target) {
-            return search(nums, target, mid + 1, end);
-        } else if (nums[mid] > target) {
-            return search(nums, target, start, mid - 1);
+    static public char recursiveSearch(String s, int index) {
+        if (index == s.length()) {
+            throw new IllegalArgumentException("No capital letter found");
         }
 
-        return -1;
+        char currentChar = s.charAt(index);
 
+        if (Character.isUpperCase(currentChar)) {
+            return currentChar;
+        }
+
+        return recursiveSearch(s, index + 1);
     }
 
 }
