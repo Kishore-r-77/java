@@ -1,45 +1,26 @@
 package practice;
 
-import java.util.Arrays;
-
 class Practice {
     public static void main(String[] args) {
 
-        // leetcode 344
+        // Input: n = 10
+        // Output: 1 2 3 4 5 6 7 8 9 10
 
-        // Example 1:
-
-        // Input: s = ["h","e","l","l","o"]
-        // Output: ["o","l","l","e","h"]
-
-        char[] s = { 'H', 'a', 'n', 'n', 'a', 'h' };
-
-        reverseString(s);
-        System.out.println(Arrays.toString(s));
+        printToN(5);
 
     }
 
-    static public void reverseString(char[] s) {
-        recursiveReverse(s, 0, s.length - 1);
-
+    static public void printToN(int n) {
+        recursivePrint(n, 0);
     }
 
-    static public void recursiveReverse(char[] s, int start, int end) {
-        if (start >= end) {
+    static public void recursivePrint(int n, int count) {
+        if (count == n) {
             return;
         }
-        swap(start, end, s);
-        start += 1;
-        end -= 1;
-        recursiveReverse(s, start, end);
-    }
-
-    static void swap(int start, int end, char[] arr) {
-
-        char temp = arr[start];
-        arr[start] = arr[end];
-        arr[end] = temp;
-
+        count++;
+        System.out.println(count);
+        recursivePrint(n, count);
     }
 
 }
