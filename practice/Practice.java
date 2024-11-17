@@ -3,24 +3,30 @@ package practice;
 class Practice {
     public static void main(String[] args) {
 
-        // Input: n = 10
-        // Output: 1 2 3 4 5 6 7 8 9 10
+        // leetcode 509
+        // Input: n = 2
+        // Output: 1
+        // Explanation: F(2) = F(1) + F(0) = 1 + 0 = 1.
 
-        printToN(5);
+        // 0,1,1,2,3,5,8,13
+
+        System.out.println(fib(4));
 
     }
 
-    static public void printToN(int n) {
-        recursivePrint(n, 0);
-    }
+    static public int fib(int n) {
 
-    static public void recursivePrint(int n, int count) {
-        if (count == n) {
-            return;
+        int n1 = 0;
+        int n2 = 1;
+        int output = 0;
+
+        for (int i = 2; i <= n; i++) {
+            output = n1 + n2;
+            n1 = n2;
+            n2 = output;
         }
-        count++;
-        System.out.println(count);
-        recursivePrint(n, count);
+
+        return output;
     }
 
 }
